@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منوی آنلاین | کافه اسپرلوس</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f5f1;
+            color: #3a2c1e;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(rgba(58, 44, 30, 0.8), rgba(58, 44, 30, 0.8)), url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3');
+            background-size: cover;
+            background-position: center;
+            color: #f8f5f1;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Menu Section Styles */
+        .menu-category {
+            margin-bottom: 50px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .menu-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* آیکون‌های پس‌زمینه برای هر بخش */
+        .hot-drinks::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            background-image: url('https://cdn-icons-png.flaticon.com/512/924/924514.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        .cold-drinks::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            background-image: url('https://cdn-icons-png.flaticon.com/512/3243/3243983.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        .breakfast::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            background-image: url('https://cdn-icons-png.flaticon.com/512/5787/5787016.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        .cakes::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            background-image: url('https://cdn-icons-png.flaticon.com/512/3724/3724976.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        .category-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #d4a574;
+            position: relative;
+            z-index: 1;
+        }
+
+        .title-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .category-title i {
+            font-size: 1.8rem;
+            margin-left: 15px;
+            color: #d4a574;
+        }
+
+        .category-title h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #5d4037;
+        }
+
+        /* استایل دکمه‌ها */
+        .category-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn i {
+            font-size: 1rem;
+        }
+
+        /* دکمه‌های مخصوص هر بخش */
+        .hot-drinks .btn-primary {
+            background: linear-gradient(135deg, #8B4513, #A0522D);
+            color: white;
+        }
+
+        .hot-drinks .btn-secondary {
+            background-color: #f8f5f1;
+            color: #8B4513;
+            border: 2px solid #8B4513;
+        }
+
+        .cold-drinks .btn-primary {
+            background: linear-gradient(135deg, #1E90FF, #00BFFF);
+            color: white;
+        }
+
+        .cold-drinks .btn-secondary {
+            background-color: #f8f5f1;
+            color: #1E90FF;
+            border: 2px solid #1E90FF;
+        }
+
+        .breakfast .btn-primary {
+            background: linear-gradient(135deg, #FFA500, #FFD700);
+            color: white;
+        }
+
+        .breakfast .btn-secondary {
+            background-color: #f8f5f1;
+            color: #FFA500;
+            border: 2px solid #FFA500;
+        }
+
+        .cakes .btn-primary {
+            background: linear-gradient(135deg, #FF69B4, #FFB6C1);
+            color: white;
+        }
+
+        .cakes .btn-secondary {
+            background-color: #f8f5f1;
+            color: #FF69B4;
+            border: 2px solid #FF69B4;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .btn-secondary:hover {
+            background-color: #f0f0f0;
+        }
+
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .menu-item {
+            padding: 15px 0;
+            border-bottom: 1px dashed #e0d6cc;
+            transition: transform 0.2s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateX(5px);
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .item-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #5d4037;
+        }
+
+        .item-desc {
+            font-size: 0.9rem;
+            color: #8d786a;
+            text-align: justify;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-items {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .category-title {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .category-title h2 {
+                font-size: 1.5rem;
+            }
+            
+            .category-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .btn {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+            
+            .hot-drinks::before,
+            .cold-drinks::before,
+            .breakfast::before,
+            .cakes::before {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .category-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+    <!-- Using Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>کافه اسپرلوس</h1>
+            <p>Coffee & Patisserie</p>
+        </header>
+
+        <!-- نوشیدنی های گرم -->
+        <section class="menu-category hot-drinks">
+            <div class="category-title">
+                <div class="title-content">
+                    <i class="fas fa-mug-hot"></i>
+                    <h2>نوشیدنی‌های گرم</h2>
+                </div>
+                <div class="category-buttons">
+                    <button class="btn btn-primary">
+                        <i class="fas fa-fire"></i>
+                        پرفروش‌ها
+                    </button>
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-list"></i>
+                        مشاهده همه
+                    </button>
+                </div>
+            </div>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="item-header">
+                        <span class="item-name">اسپرسو ایتالیایی</span>
+                    </div>
+                    <p class="item-desc">اسپرسو سینگل و دبل، خالص و قدرتمند. پایه‌ای اصیل برای تمام نوشیدنی‌های ما.</p>
+                </div>
+                <div class="menu-item">
+                    <div class="item-header">
+                        <span class="item-name">آمریکانو</span>
+                    </div>
+                    <p class="item-desc">اسپرسو و آب داغ، ساده و کلاسیک.</p>
+                </div>
+                <!-- سایر آیتم‌ها -->
+            </div>
+        </section>
+
+        <!-- نوشیدنی های سرد -->
+        <section class="menu-category cold-drinks">
+            <div class="category-title">
+                <div class="title-content">
+                    <i class="fas fa-glass-whiskey"></i>
+                    <h2>نوشیدنی‌های سرد</h2>
+                </div>
+                <div class="category-buttons">
+                    <button class="btn btn-primary">
+                        <i class="fas fa-snowflake"></i>
+                        ویژه تابستان
+                    </button>
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-list"></i>
+                        مشاهده همه
+                    </button>
+                </div>
+            </div>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="item-header">
+                        <span class="item-name">آیس لاته</span>
+                    </div>
+                    <p class="item-desc">اسپرسو و شیر سرد، تازه و انرژی‌بخش.</p>
+                </div>
+                <div class="menu-item">
+                    <div class="item-header">
+                        <span class="item-name">آمریکانو سرد</span>
+                    </div>
+                    <p class="item-desc">اسپرسو روی یخ، برای روزهای گرم.</p>
+                </div>
+                <!-- سایر آیتم‌ها -->
+            </div>
+        </section>
+
+        <!-- صبحانه -->
+        <section class="menu-category breakfast">
+            <div class="category-title">
+                <div class="title-content">
+                    <i class="fas fa-utensils"></i>
+                    <h2>صبحانه</h2>
+                </div>
+                <div class="category-buttons">
+                    <button class="btn btn-primary">
+                        <i class="fas fa-star"></i>
+                        پیشنهاد شف
+                    </button>
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-list"></i>
+                        مشاهده همه
+                    </button>
+                </div>
+            </div>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="item-header">
+                        <span class="item-name">صبحانه انگلیسی</span>
+                    </div>
+                    <p class="item-desc">تخم مرغ، سوسیس، قارچ، لوبیا و گوجه گریل شده.</p>
+                </div>
+                <div class="menu-item">
+                    <div class="item-header">
+                        <span class="item-name">صبحانه فرانسوی</span>
+                    </div>
+                    <p class="item-desc">نان باگت، کرپ، کرومبو، پنیر خامه‌ای و مربا.</p>
+                </div>
+                <!-- سایر آیتم‌ها -->
+            </div>
+        </section>
+
+        <!-- کیک و شیرینی -->
+        <section class="menu-category cakes">
+            <div class="category-title">
+                <div class="title-content">
+                    <i class="fas fa-birthday-cake"></i>
+                    <h2>کیک و شیرینی</h2>
+                </div>
+                <div class="category-buttons">
+                    <button class="btn btn-primary">
+                        <i class="fas fa-gift"></i>
+                        جدیدترین‌ها
+                    </button>
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-list"></i>
+                        مشاهده همه
+                    </button>
+                </div>
+            </div>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="item-header">
+                        <span class="item-name">چیزکیک</span>
+                    </div>
+                    <p class="item-desc">(شکلاتی، وانیلی، بلوبری) خامه‌ای و لطیف.</p>
+                </div>
+                <div class="menu-item">
+                    <div class="item-header">
+                        <span class="item-name">تیرامیسو</span>
+                    </div>
+                    <p class="item-desc">کلاسیک ایتالیایی با ماسکارپونه و قهوه.</p>
+                </div>
+                <!-- سایر آیتم‌ها -->
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // اضافه کردن عملکرد به دکمه‌ها
+        document.addEventListener('DOMContentLoaded', function() {
+            // دکمه‌های مشاهده همه
+            const viewAllButtons = document.querySelectorAll('.btn-secondary');
+            viewAllButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.closest('.menu-category');
+                    const categoryName = category.querySelector('h2').textContent;
+                    alert(`مشاهده همه آیتم‌های ${categoryName}`);
+                });
+            });
+
+            // دکمه‌های اصلی هر بخش
+            const primaryButtons = document.querySelectorAll('.btn-primary');
+            primaryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.closest('.menu-category');
+                    const categoryName = category.querySelector('h2').textContent;
+                    const buttonText = this.textContent.trim();
+                    alert(`عملیات "${buttonText}" برای ${categoryName}`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
