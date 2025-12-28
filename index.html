@@ -1,113 +1,588 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-  <meta charset="UTF-8">
-  <title>لِنا</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>برای سحر؛ دنیای عشق من</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: radial-gradient(circle at top, #1a1a1a, #000);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: "Segoe UI", Tahoma, sans-serif;
-      color: #fff;
-    }
+    <!-- فونت (در صورت داشتن اینترنت) -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-    .box {
-      width: 90%;
-      max-width: 440px;
-      padding: 36px 30px;
-      border-radius: 22px;
-      background: rgba(255,255,255,0.06);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 0 45px rgba(255,80,120,0.18);
-      text-align: center;
-    }
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-    h1 {
-      margin: 0 0 18px;
-      font-size: 36px;
-      letter-spacing: 3px;
-      color: #ff5c8a;
-    }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Vazirmatn", sans-serif;
+            direction: rtl;
+            background: radial-gradient(circle at top, #ffdde1 0%, #ee9ca7 35%, #3c1053 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
 
-    #text {
-      min-height: 110px;
-      font-size: 19px;
-      line-height: 2;
-      opacity: 0;
-      transform: translateY(12px);
-      transition: all 0.45s ease;
-    }
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at top, rgba(255,255,255,0.15), transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
 
-    #text.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            width: 95%;
+            margin: 20px;
+            padding: 24px 22px 26px;
+            border-radius: 24px;
+            background: rgba(15, 6, 24, 0.78);
+            box-shadow:
+                0 25px 60px rgba(0, 0, 0, 0.7),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+        }
 
-    button {
-      margin-top: 30px;
-      padding: 12px 34px;
-      border: none;
-      border-radius: 30px;
-      background: linear-gradient(135deg, #ff4d6d, #ff8fab);
-      color: #000;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: transform .2s ease, box-shadow .2s ease;
-    }
+        @media (min-width: 768px) {
+            .container {
+                padding: 32px 34px 36px;
+            }
+        }
 
-    button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 22px rgba(255,92,138,.6);
-    }
-  </style>
+        .top-glow {
+            position: absolute;
+            inset: -2px;
+            border-radius: inherit;
+            background: linear-gradient(120deg, #ffd1ff, #ff758c, #ffb199, #ffd1ff);
+            opacity: 0.28;
+            filter: blur(8px);
+            z-index: -1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+            font-size: 1.9rem;
+            letter-spacing: 0.03em;
+        }
+
+        header p {
+            margin: 4px 0;
+            font-size: 0.95rem;
+            color: #fbd9ff;
+        }
+
+        .divider {
+            margin: 16px auto 18px;
+            width: 120px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #ffb3c6, transparent);
+            position: relative;
+        }
+
+        .divider::after {
+            content: "";
+            position: absolute;
+            top: -3px;
+            right: 50%;
+            transform: translateX(50%) rotate(45deg);
+            width: 10px;
+            height: 10px;
+            background: #ff8fa3;
+            box-shadow:
+                0 0 10px rgba(255, 143, 163, 0.8),
+                0 0 24px rgba(255, 180, 200, 0.9);
+        }
+
+        .subheader {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 18px;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #ffe7ff;
+        }
+
+        .tag {
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 198, 225, 0.5);
+            background: rgba(255, 198, 225, 0.12);
+            font-size: 0.8rem;
+        }
+
+        main {
+            margin-top: 18px;
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.1fr);
+            gap: 18px;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .panel {
+            padding: 16px 14px 16px;
+            border-radius: 18px;
+            background: radial-gradient(circle at top left, rgba(255,255,255,0.15), rgba(0,0,0,0.45));
+            border: 1px solid rgba(255, 213, 231, 0.18);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65);
+        }
+
+        .panel h2 {
+            margin: 0 0 8px;
+            font-size: 1.1rem;
+        }
+
+        .panel p {
+            margin: 0 0 14px;
+            font-size: 0.84rem;
+            color: #ffe2ff;
+            line-height: 1.7;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .btn {
+            position: relative;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 9px 16px;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: #33081b;
+            background: linear-gradient(135deg, #ffd1dc, #ff9a9e);
+            box-shadow:
+                0 10px 20px rgba(0, 0, 0, 0.55),
+                0 0 0 1px rgba(255, 255, 255, 0.4) inset;
+            transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+        }
+
+        .btn::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            border-radius: inherit;
+            border: 1px solid rgba(255, 255, 255, 0.65);
+            opacity: 0.6;
+            mix-blend-mode: screen;
+            pointer-events: none;
+        }
+
+        .btn.secondary {
+            background: linear-gradient(135deg, #fbc2eb, #a18cd1);
+            color: #270634;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px) scale(1.01);
+            filter: brightness(1.04);
+            box-shadow:
+                0 16px 26px rgba(0, 0, 0, 0.55),
+                0 0 0 1px rgba(255, 255, 255, 0.45) inset;
+        }
+
+        .btn:active {
+            transform: translateY(1px) scale(0.99);
+            box-shadow:
+                0 6px 14px rgba(0, 0, 0, 0.7),
+                0 0 0 1px rgba(255, 255, 255, 0.35) inset;
+        }
+
+        .display-box {
+            min-height: 95px;
+            border-radius: 14px;
+            padding: 10px 11px;
+            background: rgba(15, 5, 28, 0.92);
+            border: 1px solid rgba(255, 198, 225, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .display-box::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top, rgba(255,255,255,0.16), transparent 60%);
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        .label {
+            position: absolute;
+            top: 6px;
+            left: 11px;
+            font-size: 0.7rem;
+            color: rgba(255, 198, 225, 0.9);
+        }
+
+        .message {
+            position: relative;
+            z-index: 1;
+            margin-top: 14px;
+            font-size: 0.93rem;
+            line-height: 1.9;
+            color: #ffe7ff;
+            opacity: 0;
+            transform: translateY(8px);
+        }
+
+        .message.show {
+            animation: fadeInUp 0.45s ease-out forwards;
+        }
+
+        .hint {
+            margin-top: 8px;
+            font-size: 0.8rem;
+            color: #ffcfe6;
+            opacity: 0.9;
+        }
+
+        .tiny {
+            font-size: 0.73rem;
+            color: #f8d9ff;
+            opacity: 0.8;
+            margin-top: 10px;
+        }
+
+        .challenge-list {
+            margin-top: 6px;
+            padding-top: 6px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.15);
+            font-size: 0.8rem;
+            color: #ffe9ff;
+        }
+
+        .challenge-list strong {
+            font-size: 0.82rem;
+        }
+
+        footer {
+            margin-top: 18px;
+            text-align: center;
+            font-size: 0.72rem;
+            color: #f8ddff;
+            opacity: 0.75;
+        }
+
+        /* قلب‌ها */
+        .heart {
+            position: fixed;
+            width: 14px;
+            height: 14px;
+            background: #ff84a6;
+            transform: rotate(-45deg);
+            transform-origin: center;
+            animation: floatUp 5s linear forwards;
+            opacity: 0.9;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            background: #ff84a6;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -7px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: 7px;
+            top: 0;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(0.8) rotate(-45deg);
+                opacity: 0.9;
+            }
+            60% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(-120vh) scale(1.3) rotate(-45deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulseSoft {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        .soft-pulse {
+            animation: pulseSoft 2.3s ease-in-out infinite;
+        }
+    </style>
 </head>
 <body>
+<div class="overlay"></div>
 
-  <div class="box">
-    <h1>لِنا</h1>
-    <p id="text"></p>
-    <button onclick="showText()">ادامه</button>
-  </div>
+<div class="container">
+    <div class="top-glow"></div>
 
-  <script>
-    const sentences = [
-      "تو را من چشم در راهم شباهنگام.",
-      "جهان بی‌تو کم از زندان ندارد.",
-      "دلم آرام نمی‌گیرد مگر با یاد تو.",
-      "نبودنت چنان است که انگار جهان چیزی کم دارد.",
-      "من از آن حسن روزافزون که یوسف داشت دانستم.",
-      "هر چه کردم جز تو از دل بیرونم نرفت.",
-      "دلتنگی، سهم کسی‌ست که دوست داشتن را بلد است.",
-      "جهان تنگ است بی آن‌کس که دل به او سپرده‌ای.",
-      "درد عشق از هر چه درمان است خوش‌تر است.",
-      "به هوای تو نفس می‌کشم، نه به عادت."
+    <header>
+        <h1 id="titleText"></h1>
+        <p id="subtitleText"></p>
+
+        <div class="divider"></div>
+
+        <div class="subheader">
+            <div class="tag soft-pulse" id="specialTag"></div>
+            <div class="tag">هر کلیک = یه شعر عاشقانه و یه قربون‌صدقه‌ی تازه</div>
+        </div>
+    </header>
+
+    <main>
+        <!-- پنل شعر و قربون‌صدقه -->
+        <section class="panel">
+            <h2>دکمه‌ی مخصوص شعر و قربون‌صدقه</h2>
+            <p>
+                هر بار این دکمه رو بزنی، یه جمله‌ی عاشقانه
+                قاطی با تیکه‌هایی از شعر شاعرهای ایرانی، مخصوص سحر درمیاد.
+            </p>
+
+            <div class="buttons">
+                <button class="btn" id="loveBtn">قربون‌صدقه‌ات برم</button>
+                <button class="btn secondary" id="allInOneBtn">هم شعر، هم چالش</button>
+            </div>
+
+            <div class="display-box">
+                <span class="label">قلبِ حرف‌های دلی</span>
+                <div id="loveMessage" class="message show">
+                    روی «قربون‌صدقه‌ات برم» بزن تا اولین شعر و حرفِ دلی مخصوص خودت رو بگیری.
+                </div>
+            </div>
+
+            <div class="hint">
+                هر شعری رو که دوست داشتی، اسکرین‌شات بگیر؛
+                کم‌کم یه آلبوم شعر و قربون‌صدقه مخصوص خودت درست می‌شه.
+            </div>
+        </section>
+
+        <!-- پنل چالش‌ها -->
+        <section class="panel">
+            <h2>چالش‌های رمانتیک دونفره</h2>
+            <p>
+                برای روزهایی که می‌خوایم بیشتر بخندیم، حرف بزنیم و خاطره بسازیم؛
+                این دکمه هر بار یه چالش یا سؤال صمیمی برای دوتامون در میاره.
+            </p>
+
+            <div class="buttons">
+                <button class="btn secondary" id="challengeBtn">چالش عشقی امروز</button>
+            </div>
+
+            <div class="display-box">
+                <span class="label">چالش / سؤال امشب</span>
+                <div id="challengeMessage" class="message show">
+                    روی «چالش عشقی امروز» بزن تا یه کار بامزه و صمیمی برای خودمون دربیاد.
+                </div>
+            </div>
+
+            <div class="challenge-list">
+                <strong>ایده‌ی استفاده:</strong>
+                <br>
+                می‌تونیم قرار بذاریم هر روز یا هر بار که همدیگه رو می‌بینیم،
+                حداقل یک چالش رو انجام بدیم؛
+                آخرش می‌فهمیم تو یه مدت کوتاه، چندتا خاطره‌ی جدید ساختیم.
+            </div>
+
+            <p class="tiny">
+                اگر خواستی خودت هم چالش‌ اضافه کنی،
+                توی کد، آرایه‌ی <code>challenges</code> رو باز کن و جمله‌ی جدید بنویس.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        این صفحه برای این ساخته شده که حتی تو معمولی‌ترین روزها، یادت نره چقدر خاصی.
+    </footer>
+</div>
+
+<script>
+    // ---------- تنظیمات ----------
+    // اسم دوست‌دخترت:
+    const herName = "سحر";
+
+    // ---------- متن‌های شعر + قربون‌صدقه ----------
+    const loveMessages = [
+        `${herName} جان، حافظ می‌گه: «در ازل پرتو حسنت ز تجلی دم زد / عشق پیدا شد و آتش به همه عالم زد»؛ برای من اون پرتو، چشم‌های توئه.`,
+        `${herName}، سعدی گفته: «بنده‌ی عشقم و از هر دو جهان آزادم»؛ کنار تو واقعاً همینم، انگار فقط بودنت کافیه.`,
+        `مولانا می‌گه: «تو مرا جان و جهانی، چه کنم جان و جهان را؟»؛ وقتی تویی، باقیِ دنیا فقط حاشیه‌ی داستان ماست، ${herName} جان.`,
+        `خیام می‌گه: «از دی که گذشت هیچ از او یاد مکن / فردا که نیامده‌ست فریاد مکن»؛ من فقط همین "الانِ کنار تو" رو می‌خوام، همین بودن با تو.`,
+        `باباطاهر می‌گه: «به صحرا بنگرم، صحرا تو بینم»؛ ${herName} جان، هر جا رو نگاه می‌کنم یه نشونی از تو پیدا می‌کنم.`,
+        `حافظ یه جا می‌گه: «منم که شهره‌ی شهرم به عشق ورزیدن»؛ منم دلم می‌خواد شهره باشم، ولی فقط به یه چیز: عاشقِ ${herName} بودن.`,
+        `سعدی می‌گه: «دلبر که در او هیچ نظر نیست که نیکوست»؛ این دقیقاً تعریف من از توئه؛ از سر تا پا قشنگ و دوست‌داشتنی.`,
+        `مولانا گفته: «هر لحظه به شکلی بتِ عیار برآمد»؛ تو هم هر روز یه شکل جدید از دوست‌داشتنی بودن رو رو می‌کنی، و من هر روز از نو عاشقت می‌شم.`,
+        `خیام می‌گه: «می خوردن و شاد بودن آیین من است»؛ آیین من از وقتی تو اومدی، شده "تو، خنده‌هات و بودن کنارِت".`,
+        `حافظ می‌گه: «تو خود حجابِ خودی، حافظ از میان برخیز»؛ منم هرچی غصه‌ست می‌ذارم کنار، فقط به تو و آرامشی که می‌دی فکر می‌کنم، ${herName}.`,
+        `${herName} جان، سعدی گفته: «عشق تو مرا از همه عالم بربود»؛ من هم دقیقاً همین حال و هوا رو با تو دارم؛ انگار بقیه‌ی دنیا کم‌رنگ‌تر شده.`,
+        `مولانا می‌گه: «ای جانِ جهان با تو چه بی‌جان شوم؟»؛ من بدون تو یه نسخه‌ی نصفه‌نیمه از خودمم، کاملِ من تویی.`,
+        `حافظ می‌گه: «درخت دوستی بنشان که کام دل به بار آرد»؛ تو همون درخت دوستی‌ای هستی که تو دلم کاشته شده و هر روز قشنگ‌تر می‌شه.`,
+        `باباطاهر می‌گه: «درونِ سینه‌ام جایی برای غیر تو نیست»؛ واقعاً هم توی قلب من فقط یه جا هست و اون برای توئه، ${herName} جان.`,
+        `سعدی می‌گه: «چنان در دل نشستی، گویی از ما بودی»؛ انگار از اول جزئی از من بودی که تازه پیدات کردم، نه کسی که از بیرون اومده باشه.`,
+        `خیام می‌گه: «گر یک نفست ز زندگانی گذرد / مگذار که جز به شادمانی گذرد»؛ شادمانی من یعنی لبخند تو، بغل تو و صدای تو.`,
+        `حافظ گفته: «دل می‌رود ز دستم، صاحب دلان خدا را»؛ هر بار می‌بینمت، دلم واقعاً از دستم در می‌ره و می‌ره سمتِ تو.`,
+        `مولانا می‌گه: «عشق آن شعله‌ست کاندر جان برفروزد»؛ تو اون شعله‌ای هستی که توی من روشن شده و خاموش‌شدنی نیست، ${herName}.`,
+        `${herName} جان، سعدی گفته: «نه دل از تو می‌بُرد و نه تو را فراموش می‌کند»؛ این دقیقاً وضعیتِ منه با تو؛ نه دل‌ بریدنی هست، نه فراموش شدنی.`,
+        `خیام می‌گه: «هر لحظه نو می‌شود دنیا و ما»؛ دنیای من هر روز با تو یه شکل تازه‌ی قشنگ‌تر می‌گیره.`,
+        `حافظ می‌گه: «تو کز مکارمِ اخلاق عالمی دگری»؛ برای من هم تو یه دنیای دیگه‌ای؛ مهربون‌تر، نجیب‌تر و قشنگ‌تر از همه.`,
+        `مولانا گفته: «از صدای پای عشق، تو اگر آگه شوی...»؛ من سال‌ها پیش، قبل از دیدنت، یه جوری منتظر تو بودم، بی‌آن‌که بدونم کی هستی.`,
+        `سعدی می‌گه: «چنانت دوست می‌دارم که گر روزی بپرسی من که‌ام، در جوابِ نامِ خود، نام تو را خواهم گرفت»؛ این دقیقاً حسِ من به توست، ${herName}.`,
+        `${herName} جان، همه‌ی این شعرها یه طرف، اون حسی که خودم بهت دارم، یه شعر جدا و بی‌انتهاست که هر روز داره طولانی‌تر می‌شه.`
     ];
 
-    let last = -1;
+    // ---------- چالش‌ها و سؤال‌های عشقی ----------
+    const challenges = [
+        `چالش: یه بیت عاشقانه از حافظ، سعدی یا مولانا پیدا کن که حس تو به من رو توصیف کنه و برام بفرست.`,
+        `چالش: یکی از شعرهایی رو که دوستش داری، با صدای خودت برام بخون و ویس بفرست.`,
+        `چالش: سه تا چیزی که تو من دوست داری رو بنویس و برای هرکدوم یه دلیل کوتاه بنویس.`,
+        `چالش: اولین خاطره‌ای که از من یادت میاد رو با جزئیات تعریف کن؛ جوری که انگار داری برام قصه می‌گی.`,
+        `چالش: امشب یه عکس از چیزی که باعث شد لبخند بزنی برام بفرست و بگو چرا.`,
+        `چالش: بدون استفاده از کلمه‌ی «دوستت دارم»، برام اعترافِ عشقی بنویس.`,
+        `چالش: یه پیام کوتاه برام بنویس که اگر یه روز حالم بد بود، با خوندنش حالم خوب شه.`,
+        `چالش: سه تا قول کوچیک ولی مهم برای رابط‌مون بنویس و برام بفرست.`,
+        `چالش: ده سال بعد خودمون رو تصور کن؛ اون تصویر رو تو پنج شش خط برام تعریف کن.`,
+        `چالش: یه لقبی که دوست داری فقط من صدات کنم انتخاب کن و دلیلش رو بگو.`,
+        `چالش: اگر الان کنار هم بودیم، دوست داشتی چی کار کنیم؟ با جزئیات برام تعریف کن.`,
+        `چالش: سه تا کاری که دوست داری باهم امتحان کنیم (سفر، تفریح، غذا، هرچی) رو لیست کن.`,
+        `چالش: یه خاطره‌ی خیلی ساده ولی قشنگ از من بگو که شاید خودمم یادم رفته باشه.`,
+        `چالش: امروز رو فقط با سه کلمه توصیف کن و بعد بگو من تو هر کدوم چه نقشی داشتم.`,
+        `چالش: یه کاری که قول می‌دی برای خوشحال کردن من تو این هفته انجام بدی رو انتخاب کن.`,
+        `چالش: یکی از آهنگ‌هایی که وقتی می‌شنوی یاد من می‌افتی رو بفرست و بگو کجاش تو رو یاد من می‌اندازه.`,
+        `چالش: اسم من رو قشنگ‌ترین جوری که می‌تونی روی یه کاغذ بنویس، ازش عکس بگیر و برام بفرست.`,
+        `چالش: یه قرار خیالی برای خودمون تو یه شهر یا کشور دیگه طراحی کن و برام با جزئیات تعریف کن.`,
+        `چالش: سه تا ترس یا نگرانی‌ات رو درباره‌ی آینده بگو و بنویس که من چطور می‌تونم کنارت باشم.`,
+        `چالش: یه لیست پنج‌تایی از چیزهای کوچیکی که باعث می‌شن حس دوست‌داشتنی بودن داشته باشی برام بنویس.`,
+        `چالش: یه بیت شعر عاشقانه بساز که توش اسم من هم باشه؛ حتی اگه خنده‌دار شد مهم نیست.`,
+        `چالش: تصور کن امروز سالگردمون باشه؛ یه متن کوتاه بنویس که اون روز دوست داشتی برام بفرستی.`,
+        `چالش: سه تا چیز که دوست داری تو رابطه‌مون همیشه حفظ بشه (حتی بعد سال‌ها) رو برام بنویس.`,
+        `چالش: یه خاطره‌ای که با فکر کردن بهش از خنده ریسه می‌ری رو برام تعریف کن؛ حتی اگه من توش نبودم.`,
+        `چالش: اگر بخوای یه فیلم در مورد داستانِ ما بسازی، اسمش چی می‌شه و آخرش چطور تموم می‌شه؟`,
+        `چالش: امشب قبل خواب، سه تا چیزی که بابتشون از من ممنونی رو بنویس و برام بفرست.`,
+        `چالش: یه نامه‌ی خیلی کوتاه برای «خودِ کوچیکت» بنویس و توش از رابطه‌ی الان‌مون براش تعریف کن.`,
+        `چالش: فردا یه کار خیلی کوچیک ولی متفاوت فقط به نیت خوشحال کردن من انجام بده و بعدش بگو چی کار کردی.`
+    ];
 
-    function showText() {
-      let i;
-      do {
-        i = Math.floor(Math.random() * sentences.length);
-      } while (i === last);
-      last = i;
-
-      const el = document.getElementById("text");
-      el.classList.remove("show");
-
-      setTimeout(() => {
-        el.textContent = sentences[i];
-        el.classList.add("show");
-      }, 120);
+    // ---------- توابع کمکی ----------
+    function getRandomItem(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
     }
-  </script>
 
+    function showAnimatedText(element, text) {
+        element.classList.remove("show");
+        // ترفند برای ری‌استارت انیمیشن
+        void element.offsetWidth;
+        element.textContent = text;
+        element.classList.add("show");
+    }
+
+    function createHeartBurst() {
+        const count = 8 + Math.floor(Math.random() * 5);
+        for (let i = 0; i < count; i++) {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+
+            const size = 10 + Math.random() * 14;
+            heart.style.width = size + "px";
+            heart.style.height = size + "px";
+
+            const left = Math.random() * 100;
+            heart.style.left = left + "vw";
+
+            const duration = 4 + Math.random() * 3;
+            heart.style.animationDuration = duration + "s";
+
+            const delay = Math.random() * 0.6;
+            heart.style.animationDelay = delay + "s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, (duration + delay) * 1000);
+        }
+    }
+
+    // ---------- راه‌اندازی اولیه ----------
+    document.addEventListener("DOMContentLoaded", () => {
+        const titleEl = document.getElementById("titleText");
+        const subtitleEl = document.getElementById("subtitleText");
+        const specialTag = document.getElementById("specialTag");
+
+        titleEl.textContent = `برای ${herName}؛ قشنگ‌ترین اتفاق زندگی من`;
+        subtitleEl.textContent = `این‌جا جاییه که هر بار دلت قربون‌صدقه و شعر خواست، فقط با یه کلیک، نازت رو می‌کشه.`;
+        specialTag.textContent = `ساخته شده فقط برای ${herName}`;
+
+        const loveBtn = document.getElementById("loveBtn");
+        const allBtn = document.getElementById("allInOneBtn");
+        const challengeBtn = document.getElementById("challengeBtn");
+        const loveMessageEl = document.getElementById("loveMessage");
+        const challengeMessageEl = document.getElementById("challengeMessage");
+
+        loveBtn.addEventListener("click", () => {
+            const msg = getRandomItem(loveMessages);
+            showAnimatedText(loveMessageEl, msg);
+            createHeartBurst();
+        });
+
+        challengeBtn.addEventListener("click", () => {
+            const ch = getRandomItem(challenges);
+            showAnimatedText(challengeMessageEl, ch);
+            createHeartBurst();
+        });
+
+        allBtn.addEventListener("click", () => {
+            const msg = getRandomItem(loveMessages);
+            const ch = getRandomItem(challenges);
+            showAnimatedText(loveMessageEl, msg);
+            showAnimatedText(challengeMessageEl, ch);
+            createHeartBurst();
+        });
+    });
+</script>
 </body>
 </html>
