@@ -1,585 +1,1535 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>برای سحر؛ دنیای عشق من</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- فونت (در صورت داشتن اینترنت) -->
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap" rel="stylesheet">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>کار عالی (Caraali) - مرکز تخصصی مراقبت از خودرو</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
+        /* Reset و فونت‌ها */
         * {
-            box-sizing: border-box;
-        }
-
-        body {
             margin: 0;
             padding: 0;
-            font-family: "Vazirmatn", sans-serif;
-            direction: rtl;
-            background: radial-gradient(circle at top, #ffdde1 0%, #ee9ca7 35%, #3c1053 100%);
-            color: #fff;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-red: #D32F2F;
+            --dark-red: #B71C1C;
+            --light-red: #FF5252;
+            --gray-dark: #212121;
+            --gray-medium: #424242;
+            --gray-light: #757575;
+            --gray-bg: #FAFAFA;
+            --gray-border: #E0E0E0;
+            --white: #FFFFFF;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        body {
+            font-family: 'Vazirmatn', 'Roboto', sans-serif;
+            background-color: var(--gray-bg);
+            color: var(--gray-dark);
+            line-height: 1.8;
             overflow-x: hidden;
         }
-
-        .overlay {
-            position: fixed;
-            inset: 0;
-            background: radial-gradient(circle at top, rgba(255,255,255,0.15), transparent 60%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
+        
         .container {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
-            width: 95%;
-            margin: 20px;
-            padding: 24px 22px 26px;
-            border-radius: 24px;
-            background: rgba(15, 6, 24, 0.78);
-            box-shadow:
-                0 25px 60px rgba(0, 0, 0, 0.7),
-                0 0 0 1px rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(16px);
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-
-        @media (min-width: 768px) {
-            .container {
-                padding: 32px 34px 36px;
-            }
-        }
-
-        .top-glow {
-            position: absolute;
-            inset: -2px;
-            border-radius: inherit;
-            background: linear-gradient(120deg, #ffd1ff, #ff758c, #ffb199, #ffd1ff);
-            opacity: 0.28;
-            filter: blur(8px);
-            z-index: -1;
-        }
-
+        
+        /* هدر */
         header {
-            text-align: center;
-            margin-bottom: 24px;
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 4px solid var(--primary-red);
         }
-
-        header h1 {
-            margin: 0 0 8px;
-            font-size: 1.9rem;
-            letter-spacing: 0.03em;
-        }
-
-        header p {
-            margin: 4px 0;
-            font-size: 0.95rem;
-            color: #fbd9ff;
-        }
-
-        .divider {
-            margin: 16px auto 18px;
-            width: 120px;
-            height: 1px;
-            background: linear-gradient(to right, transparent, #ffb3c6, transparent);
-            position: relative;
-        }
-
-        .divider::after {
-            content: "";
-            position: absolute;
-            top: -3px;
-            right: 50%;
-            transform: translateX(50%) rotate(45deg);
-            width: 10px;
-            height: 10px;
-            background: #ff8fa3;
-            box-shadow:
-                0 0 10px rgba(255, 143, 163, 0.8),
-                0 0 24px rgba(255, 180, 200, 0.9);
-        }
-
-        .subheader {
+        
+        .header-content {
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px 18px;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            background: var(--primary-red);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 1.8rem;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.8rem;
+            color: var(--gray-dark);
+            margin-bottom: 5px;
+        }
+        
+        .logo-text span {
+            color: var(--primary-red);
+            font-weight: 700;
+        }
+        
+        .logo-text p {
+            color: var(--gray-light);
             font-size: 0.9rem;
-            color: #ffe7ff;
         }
-
-        .tag {
-            padding: 4px 10px;
-            border-radius: 999px;
-            border: 1px solid rgba(255, 198, 225, 0.5);
-            background: rgba(255, 198, 225, 0.12);
-            font-size: 0.8rem;
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
         }
-
-        main {
-            margin-top: 18px;
+        
+        nav a {
+            color: var(--gray-medium);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-red);
+            transition: var(--transition);
+        }
+        
+        nav a:hover::after,
+        nav a.active::after {
+            width: 100%;
+        }
+        
+        nav a:hover,
+        nav a.active {
+            color: var(--primary-red);
+        }
+        
+        .header-contact {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .phone-number {
+            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: 2px solid var(--primary-red);
+            color: var(--primary-red);
+            width: 45px;
+            height: 45px;
+            border-radius: 8px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .mobile-menu-btn:hover {
+            background: var(--primary-red);
+            color: white;
+        }
+        
+        /* بخش هیرو */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9)), 
+                        url('https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 180px 0 120px;
+            margin-top: 80px;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 25px;
+            line-height: 1.3;
+            font-weight: 700;
+        }
+        
+        .hero h1 span {
+            color: var(--light-red);
+            position: relative;
+        }
+        
+        .hero h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            right: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--light-red);
+            opacity: 0.5;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        /* دکمه‌ها */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 35px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+            color: white;
+            box-shadow: 0 6px 20px rgba(211, 47, 47, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(211, 47, 47, 0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary-red);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* بخش توضیحات خدمات */
+        .services-explanation {
+            padding: 120px 0;
+            background: var(--white);
+        }
+        
+        .explanation-grid {
             display: grid;
-            grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.1fr);
-            gap: 18px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
         }
-
-        @media (max-width: 768px) {
-            main {
-                grid-template-columns: minmax(0, 1fr);
-            }
+        
+        .explanation-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--gray-border);
         }
-
-        .panel {
-            padding: 16px 14px 16px;
-            border-radius: 18px;
-            background: radial-gradient(circle at top left, rgba(255,255,255,0.15), rgba(0,0,0,0.45));
-            border: 1px solid rgba(255, 213, 231, 0.18);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65);
+        
+        .explanation-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-red);
         }
-
-        .panel h2 {
-            margin: 0 0 8px;
+        
+        .explanation-icon {
+            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+        }
+        
+        .explanation-content {
+            padding: 30px;
+        }
+        
+        .explanation-content h3 {
+            font-size: 1.5rem;
+            color: var(--gray-dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .explanation-content h3 i {
+            color: var(--primary-red);
+        }
+        
+        .explanation-content p {
+            color: var(--gray-medium);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .explanation-features {
+            margin: 25px 0;
+        }
+        
+        .explanation-features li {
+            list-style: none;
+            padding: 8px 0;
+            color: var(--gray-medium);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .explanation-features i {
+            color: var(--primary-red);
+            font-size: 0.9rem;
+        }
+        
+        .explanation-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid var(--gray-border);
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-red);
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray-light);
+            margin-top: 5px;
+        }
+        
+        /* خدمات */
+        .services {
+            padding: 120px 0;
+            background: var(--gray-bg);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--gray-dark);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-red), var(--dark-red));
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            color: var(--gray-light);
+            max-width: 700px;
+            margin: 0 auto;
             font-size: 1.1rem;
         }
-
-        .panel p {
-            margin: 0 0 14px;
-            font-size: 0.84rem;
-            color: #ffe2ff;
-            line-height: 1.7;
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
-
-        .buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 14px;
+        
+        .service-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
-
-        .btn {
-            position: relative;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 9px 16px;
-            border-radius: 999px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 0.02em;
-            color: #33081b;
-            background: linear-gradient(135deg, #ffd1dc, #ff9a9e);
-            box-shadow:
-                0 10px 20px rgba(0, 0, 0, 0.55),
-                0 0 0 1px rgba(255, 255, 255, 0.4) inset;
-            transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
-
-        .btn::before {
-            content: "";
-            position: absolute;
-            inset: -2px;
-            border-radius: inherit;
-            border: 1px solid rgba(255, 255, 255, 0.65);
-            opacity: 0.6;
-            mix-blend-mode: screen;
-            pointer-events: none;
-        }
-
-        .btn.secondary {
-            background: linear-gradient(135deg, #fbc2eb, #a18cd1);
-            color: #270634;
-        }
-
-        .btn:hover {
-            transform: translateY(-1px) scale(1.01);
-            filter: brightness(1.04);
-            box-shadow:
-                0 16px 26px rgba(0, 0, 0, 0.55),
-                0 0 0 1px rgba(255, 255, 255, 0.45) inset;
-        }
-
-        .btn:active {
-            transform: translateY(1px) scale(0.99);
-            box-shadow:
-                0 6px 14px rgba(0, 0, 0, 0.7),
-                0 0 0 1px rgba(255, 255, 255, 0.35) inset;
-        }
-
-        .display-box {
-            min-height: 95px;
-            border-radius: 14px;
-            padding: 10px 11px;
-            background: rgba(15, 5, 28, 0.92);
-            border: 1px solid rgba(255, 198, 225, 0.3);
-            position: relative;
+        
+        .service-image {
+            height: 200px;
             overflow: hidden;
         }
-
-        .display-box::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at top, rgba(255,255,255,0.16), transparent 60%);
-            opacity: 0.8;
-            pointer-events: none;
+        
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
         }
-
-        .label {
-            position: absolute;
-            top: 6px;
-            left: 11px;
-            font-size: 0.7rem;
-            color: rgba(255, 198, 225, 0.9);
+        
+        .service-card:hover .service-image img {
+            transform: scale(1.1);
         }
-
-        .message {
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-content h3 {
+            font-size: 1.4rem;
+            color: var(--gray-dark);
+            margin-bottom: 15px;
+        }
+        
+        .service-content p {
+            color: var(--gray-medium);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .service-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--gray-border);
+        }
+        
+        .service-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gray-light);
+            font-size: 0.9rem;
+        }
+        
+        .service-meta i {
+            color: var(--primary-red);
+        }
+        
+        /* فرآیند کار */
+        .process {
+            padding: 120px 0;
+            background: var(--white);
+        }
+        
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
             position: relative;
-            z-index: 1;
-            margin-top: 14px;
-            font-size: 0.93rem;
-            line-height: 1.9;
-            color: #ffe7ff;
-            opacity: 0;
-            transform: translateY(8px);
         }
-
-        .message.show {
-            animation: fadeInUp 0.45s ease-out forwards;
-        }
-
-        .hint {
-            margin-top: 8px;
-            font-size: 0.8rem;
-            color: #ffcfe6;
-            opacity: 0.9;
-        }
-
-        .tiny {
-            font-size: 0.73rem;
-            color: #f8d9ff;
-            opacity: 0.8;
-            margin-top: 10px;
-        }
-
-        .challenge-list {
-            margin-top: 6px;
-            padding-top: 6px;
-            border-top: 1px dashed rgba(255, 255, 255, 0.15);
-            font-size: 0.8rem;
-            color: #ffe9ff;
-        }
-
-        .challenge-list strong {
-            font-size: 0.82rem;
-        }
-
-        footer {
-            margin-top: 18px;
-            text-align: center;
-            font-size: 0.72rem;
-            color: #f8ddff;
-            opacity: 0.75;
-        }
-
-        /* قلب‌ها */
-        .heart {
-            position: fixed;
-            width: 14px;
-            height: 14px;
-            background: #ff84a6;
-            transform: rotate(-45deg);
-            transform-origin: center;
-            animation: floatUp 5s linear forwards;
-            opacity: 0.9;
-            z-index: 5;
-            pointer-events: none;
-        }
-
-        .heart::before,
-        .heart::after {
-            content: "";
+        
+        .process-steps::before {
+            content: '';
             position: absolute;
-            width: 14px;
-            height: 14px;
-            background: #ff84a6;
-            border-radius: 50%;
-        }
-
-        .heart::before {
-            top: -7px;
+            top: 40px;
+            right: 0;
             left: 0;
+            height: 2px;
+            background: var(--gray-border);
+            z-index: 1;
         }
-
-        .heart::after {
-            left: 7px;
-            top: 0;
+        
+        .process-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 2;
         }
-
-        @keyframes floatUp {
-            0% {
-                transform: translateY(0) scale(0.8) rotate(-45deg);
-                opacity: 0.9;
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--white);
+            border: 3px solid var(--primary-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-red);
+            margin: 0 auto 25px;
+            transition: var(--transition);
+        }
+        
+        .process-step:hover .step-number {
+            background: var(--primary-red);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .step-content {
+            padding: 0 15px;
+        }
+        
+        .step-content h4 {
+            font-size: 1.2rem;
+            color: var(--gray-dark);
+            margin-bottom: 10px;
+        }
+        
+        .step-content p {
+            color: var(--gray-medium);
+            font-size: 0.95rem;
+        }
+        
+        /* آمار */
+        .stats {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--dark-red), var(--primary-red));
+            color: white;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .stat-item-large {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .stat-number-large {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .stat-text-large {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        /* تماس */
+        .contact {
+            padding: 120px 0;
+            background: var(--gray-bg);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .contact-info {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+        
+        .contact-info h3 {
+            color: var(--gray-dark);
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary-red);
+        }
+        
+        .contact-details li {
+            list-style: none;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--gray-border);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .contact-details i {
+            color: var(--primary-red);
+            width: 30px;
+            font-size: 1.2rem;
+        }
+        
+        .contact-form {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--gray-dark);
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid var(--gray-border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* فوتر */
+        footer {
+            background: var(--gray-dark);
+            color: white;
+            padding: 80px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-red);
+        }
+        
+        .footer-links li {
+            list-style: none;
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--light-red);
+            padding-right: 10px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--primary-red);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* ریسپانسیو */
+        @media (max-width: 992px) {
+            .header-content {
+                padding: 15px 0;
             }
-            60% {
-                opacity: 0.9;
+            
+            nav {
+                display: none;
             }
-            100% {
-                transform: translateY(-120vh) scale(1.3) rotate(-45deg);
-                opacity: 0;
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .mobile-menu {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--white);
+                transition: var(--transition);
+                z-index: 999;
+                padding: 40px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+            
+            .mobile-menu.active {
+                right: 0;
+            }
+            
+            .mobile-menu ul {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .mobile-menu a {
+                font-size: 1.2rem;
+                padding: 15px;
+                display: block;
+                border-right: 3px solid transparent;
+                transition: var(--transition);
+            }
+            
+            .mobile-menu a:hover {
+                border-right-color: var(--primary-red);
+                background: rgba(211, 47, 47, 0.05);
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .process-steps::before {
+                display: none;
             }
         }
-
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+                margin-bottom: 10px;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .header-contact {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .phone-number {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* انیمیشن‌ها */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(10px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-
-        @keyframes pulseSoft {
-            0% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.05); opacity: 1; }
-            100% { transform: scale(1); opacity: 0.8; }
+        
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
         }
-
-        .soft-pulse {
-            animation: pulseSoft 2.3s ease-in-out infinite;
+        
+        /* دکمه بازگشت به بالا */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-red);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3);
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--dark-red);
+            transform: translateY(-5px);
         }
     </style>
 </head>
 <body>
-<div class="overlay"></div>
-
-<div class="container">
-    <div class="top-glow"></div>
-
+    <!-- دکمه بازگشت به بالا -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    
+    <!-- هدر -->
     <header>
-        <h1 id="titleText"></h1>
-        <p id="subtitleText"></p>
-
-        <div class="divider"></div>
-
-        <div class="subheader">
-            <div class="tag soft-pulse" id="specialTag"></div>
-            <div class="tag">هر کلیک = یه شعر عاشقانه و یه قربون‌صدقه‌ی تازه</div>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-car"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>کار <span>عالی</span></h1>
+                    <p>مرکز تخصصی مراقبت از خودرو</p>
+                </div>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#home" class="active">خانه</a></li>
+                    <li><a href="#explanation">توضیحات خدمات</a></li>
+                    <li><a href="#services">خدمات</a></li>
+                    <li><a href="#process">فرآیند کار</a></li>
+                    <li><a href="#contact">تماس</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-contact">
+                <div class="phone-number">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>۰۲۱-۱۲۳۴۵۶۷۸</span>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </div>
     </header>
-
-    <main>
-        <!-- پنل شعر و قربون‌صدقه -->
-        <section class="panel">
-            <h2>دکمه‌ی مخصوص شعر و قربون‌صدقه</h2>
-            <p>
-                هر بار این دکمه رو بزنی، یه جمله‌ی عاشقانه
-                قاطی با تیکه‌هایی از شعر شاعرهای ایرانی، مخصوص سحر درمیاد.
-            </p>
-
-            <div class="buttons">
-                <button class="btn" id="loveBtn">قربون‌صدقه‌ات برم</button>
-                <button class="btn secondary" id="allInOneBtn">هم شعر، هم چالش</button>
+    
+    <!-- منوی موبایل -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="#home">خانه</a></li>
+            <li><a href="#explanation">توضیحات خدمات</a></li>
+            <li><a href="#services">خدمات</a></li>
+            <li><a href="#process">فرآیند کار</a></li>
+            <li><a href="#contact">تماس</a></li>
+        </ul>
+    </div>
+    
+    <!-- هیرو -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1 class="fade-in">مراقبت <span>حرفه‌ای</span> از خودرو با کیفیت <span>بینظیر</span></h1>
+            <p class="fade-in">با بیش از ۱۰ سال تجربه در ارائه خدمات تخصصی لیسه‌گیری، ریکاوری رنگ، کاور سرامیک و محافظ فیلم شفاف برای خودروهای لوکس و معمولی</p>
+            <div class="hero-buttons fade-in">
+                <a href="#explanation" class="btn btn-primary">
+                    <i class="fas fa-info-circle"></i>
+                    توضیحات خدمات
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <i class="fas fa-calendar-check"></i>
+                    رزرو نوبت
+                </a>
             </div>
-
-            <div class="display-box">
-                <span class="label">قلبِ حرف‌های دلی</span>
-                <div id="loveMessage" class="message show">
-                    روی «قربون‌صدقه‌ات برم» بزن تا اولین شعر و حرفِ دلی مخصوص خودت رو بگیری.
+        </div>
+    </section>
+    
+    <!-- بخش توضیحات خدمات -->
+    <section class="services-explanation" id="explanation">
+        <div class="container">
+            <div class="section-title">
+                <h2>توضیحات کامل خدمات</h2>
+                <p>در این بخش به طور مفصل با خدمات تخصصی ما آشنا شوید</p>
+            </div>
+            
+            <div class="explanation-grid">
+                <div class="explanation-card fade-in">
+                    <div class="explanation-icon">
+                        <i class="fas fa-spray-can"></i>
+                    </div>
+                    <div class="explanation-content">
+                        <h3><i class="fas fa-paint-roller"></i> لیسه‌گیری حرفه‌ای (Paint Correction)</h3>
+                        <p>لیسه‌گیری فرآیندی تخصصی است که با استفاده از دستگاه‌های پولیش صنعتی و مواد تخصصی، خط و خش‌های سطحی، سوئیـل، آثار پرنده و آلودگی‌های شیمیایی را از روی بدنه خودرو کاملاً برطرف می‌کند.</p>
+                        
+                        <div class="explanation-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> پولیش سه مرحله‌ای (Cutting, Polishing, Finishing)</li>
+                                <li><i class="fas fa-check"></i> استفاده از پدهای حرفه‌ای و مواد درجه یک</li>
+                                <li><i class="fas fa-check"></i> بازگرداندن ۹۵٪ براقیت اولیه خودرو</li>
+                                <li><i class="fas fa-check"></i> حذف کامل آثار UV و اکسیداسیون</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="explanation-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">۱-۲ روز</span>
+                                <span class="stat-label">مدت زمان</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">۱۸ ماه</span>
+                                <span class="stat-label">گارانتی</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">۱۰۰٪</span>
+                                <span class="stat-label">رضایت</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="explanation-card fade-in">
+                    <div class="explanation-icon">
+                        <i class="fas fa-paint-roller"></i>
+                    </div>
+                    <div class="explanation-content">
+                        <h3><i class="fas fa-redo"></i> ریکاوری رنگ (Paint Restoration)</h3>
+                        <p>ریکاوری رنگ مخصوص خودروهای قدیمی و فرسوده است که رنگ اصلی خود را از دست داده‌اند. این فرآیند شامل احیای کامل رنگ، برگرداندن شفافیت و درخشندگی اولیه می‌شود.</p>
+                        
+                        <div class="explanation-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> احیای رنگ‌های مات و فرسوده</li>
+                                <li><i class="fas fa-check"></i> ترمیم آثار نور خورشید و UV</li>
+                                <li><i class="fas fa-check"></i> حذف اکسیداسیون سطحی</li>
+                                <li><i class="fas fa-check"></i> محافظت در برابر عوامل محیطی</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="explanation-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">۲-۳ روز</span>
+                                <span class="stat-label">مدت زمان</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">۲۴ ماه</span>
+                                <span class="stat-label">گارانتی</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">۹۵٪</span>
+                                <span class="stat-label">بازگشت شفافیت</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="explanation-card fade-in">
+                    <div class="explanation-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="explanation-content">
+                        <h3><i class="fas fa-shield-alt"></i> کاور سرامیک (Ceramic Coating)</h3>
+                        <p>کاور سرامیک یک لایه نانویی محافظ است که روی رنگ خودرو اعمال می‌شود. این لایه به مدت ۳-۵ سال از خودرو در برابر خط و خش، مواد شیمیایی، UV و آلودگی محافظت می‌کند.</p>
+                        
+                        <div class="explanation-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> ماندگاری ۳ تا ۵ سال</li>
+                                <li><i class="fas fa-check"></i> مقاومت در برابر خط و خش سطحی</li>
+                                <li><i class="fas fa-check"></i> دافع آب و آلودگی (Hydrophobic)</li>
+                                <li><i class="fas fa-check"></i> محافظت ۱۰۰٪ در برابر UV</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="explanation-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">۲ روز</span>
+                                <span class="stat-label">مدت زمان</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">۳۶ ماه</span>
+                                <span class="stat-label">گارانتی</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">۹۹٪</span>
+                                <span class="stat-label">دفع آب</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="explanation-card fade-in">
+                    <div class="explanation-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <div class="explanation-content">
+                        <h3><i class="fas fa-shield-virus"></i> محافظ فیلم شفاف (PPF)</h3>
+                        <p>PPF یا Paint Protection Film یک لایه پلی‌اورتان شفاف است که مانند یک پوست دوم روی بدنه خودرو کشیده می‌شود. این فیلم در برابر سنگ ریزه، ضربات جاده‌ای و خط و خش مقاوم است.</p>
+                        
+                        <div class="explanation-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> محافظت فیزیکی کامل از جلوبندی</li>
+                                <li><i class="fas fa-check"></i> ترمیم خودکار خط و خش سطحی</li>
+                                <li><i class="fas fa-check"></i> ماندگاری ۷ تا ۱۰ سال</li>
+                                <li><i class="fas fa-check"></i> حفظ کامل شفافیت و زیبایی</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="explanation-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">۱-۲ روز</span>
+                                <span class="stat-label">مدت زمان</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">۶۰ ماه</span>
+                                <span class="stat-label">گارانتی</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">۱۰۰٪</span>
+                                <span class="stat-label">محافظت</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="hint">
-                هر شعری رو که دوست داشتی، اسکرین‌شات بگیر؛
-                کم‌کم یه آلبوم شعر و قربون‌صدقه مخصوص خودت درست می‌شه.
+        </div>
+    </section>
+    
+    <!-- خدمات -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>خدمات ما</h2>
+                <p>با استفاده از بهترین مواد اولیه و تکنولوژی روز دنیا</p>
             </div>
-        </section>
-
-        <!-- پنل چالش‌ها -->
-        <section class="panel">
-            <h2>چالش‌های رمانتیک دونفره</h2>
-            <p>
-                برای روزهایی که می‌خوایم بیشتر بخندیم، حرف بزنیم و خاطره بسازیم؛
-                این دکمه هر بار یه چالش یا سؤال صمیمی برای دوتامون در میاره.
-            </p>
-
-            <div class="buttons">
-                <button class="btn secondary" id="challengeBtn">چالش عشقی امروز</button>
-            </div>
-
-            <div class="display-box">
-                <span class="label">چالش / سؤال امشب</span>
-                <div id="challengeMessage" class="message show">
-                    روی «چالش عشقی امروز» بزن تا یه کار بامزه و صمیمی برای خودمون دربیاد.
+            
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1579226905180-636b76d96082?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="لیسه‌گیری">
+                    </div>
+                    <div class="service-content">
+                        <h3>لیسه‌گیری کامل</h3>
+                        <p>حذف کامل خط و خش، سوئیـل و آثار خوردگی از روی بدنه خودرو با دستگاه‌های پولیش صنعتی</p>
+                        <div class="service-meta">
+                            <span><i class="far fa-clock"></i> ۱-۲ روز</span>
+                            <span><i class="fas fa-shield-alt"></i> گارانتی ۱۸ ماه</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1563720223484-21c6c2d3c487?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="ریکاوری رنگ">
+                    </div>
+                    <div class="service-content">
+                        <h3>ریکاوری رنگ</h3>
+                        <p>احیای رنگ خودروهای قدیمی و بازگرداندن شفافیت و درخشندگی اولیه</p>
+                        <div class="service-meta">
+                            <span><i class="far fa-clock"></i> ۲-۳ روز</span>
+                            <span><i class="fas fa-shield-alt"></i> گارانتی ۲۴ ماه</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="کاور سرامیک">
+                    </div>
+                    <div class="service-content">
+                        <h3>کاور سرامیک</h3>
+                        <p>محافظت نانویی با ماندگاری بالا در برابر خط و خش و مواد شیمیایی</p>
+                        <div class="service-meta">
+                            <span><i class="far fa-clock"></i> ۲ روز</span>
+                            <span><i class="fas fa-shield-alt"></i> گارانتی ۳۶ ماه</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="challenge-list">
-                <strong>ایده‌ی استفاده:</strong>
-                <br>
-                می‌تونیم قرار بذاریم هر روز یا هر بار که همدیگه رو می‌بینیم،
-                حداقل یک چالش رو انجام بدیم؛
-                آخرش می‌فهمیم تو یه مدت کوتاه، چندتا خاطره‌ی جدید ساختیم.
+        </div>
+    </section>
+    
+    <!-- فرآیند کار -->
+    <section class="process" id="process">
+        <div class="container">
+            <div class="section-title">
+                <h2>فرآیند کار در کار عالی</h2>
+                <p>از ابتدا تا انتهای کار با ما همراه باشید</p>
             </div>
-
-        
-        </section>
-    </main>
-
+            
+            <div class="process-steps">
+                <div class="process-step fade-in">
+                    <div class="step-number">۱</div>
+                    <div class="step-content">
+                        <h4>مشاوره و بازدید</h4>
+                        <p>بازدید رایگان از خودرو و ارائه مشاوره تخصصی توسط کارشناسان ما</p>
+                    </div>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">۲</div>
+                    <div class="step-content">
+                        <h4>تعیین پروژه</h4>
+                        <p>تعیین نوع خدمات مورد نیاز و ارائه طرح و برنامه کاری دقیق</p>
+                    </div>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">۳</div>
+                    <div class="step-content">
+                        <h4>اجرای خدمات</h4>
+                        <p>انجام خدمات تخصصی توسط تکنسین‌های مجرب با بهترین مواد</p>
+                    </div>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">۴</div>
+                    <div class="step-content">
+                        <h4>تحویل و گارانتی</h4>
+                        <p>تحویل خودرو با کیفیت عالی و ارائه گارانتی معتبر</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- آمار -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item-large fade-in">
+                    <span class="stat-number-large" data-count="1250">0</span>
+                    <span class="stat-text-large">خودرو سرویس شده</span>
+                </div>
+                <div class="stat-item-large fade-in">
+                    <span class="stat-number-large" data-count="10">0</span>
+                    <span class="stat-text-large">سال تجربه</span>
+                </div>
+                <div class="stat-item-large fade-in">
+                    <span class="stat-number-large" data-count="98">0</span>
+                    <span class="stat-text-large">رضایت مشتری</span>
+                </div>
+                <div class="stat-item-large fade-in">
+                    <span class="stat-number-large" data-count="36">0</span>
+                    <span class="stat-text-large">ماه گارانتی</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- تماس -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>تماس با ما</h2>
+                <p>برای مشاوره رایگان و رزرو نوبت با ما در تماس باشید</p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-info fade-in">
+                    <h3>اطلاعات تماس</h3>
+                    <ul class="contact-details">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>تهران، خیابان ولیعصر، پلاک ۱۲۳۴</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone-alt"></i>
+                            <span>۰۲۱-۱۲۳۴۵۶۷۸</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>۰۹۱۲-۱۲۳۴۵۶۷</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@caraali.ir</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>شنبه تا پنجشنبه ۹:۰۰ تا ۲۱:۰۰</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contact-form fade-in">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">نام و نام خانوادگی</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">شماره تماس</label>
+                            <input type="tel" id="phone" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="carModel">مدل خودرو</label>
+                            <input type="text" id="carModel" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">خدمت مورد نظر</label>
+                            <select id="service" class="form-control" required>
+                                <option value="">انتخاب کنید</option>
+                                <option value="paint-correction">لیسه‌گیری</option>
+                                <option value="paint-restoration">ریکاوری رنگ</option>
+                                <option value="ceramic-coating">کاور سرامیک</option>
+                                <option value="ppf">محافظ فیلم شفاف (PPF)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">پیام شما (اختیاری)</label>
+                            <textarea id="message" class="form-control" placeholder="توضیحات اضافی..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-paper-plane"></i>
+                            ارسال درخواست
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- فوتر -->
     <footer>
-        این صفحه برای این ساخته شده که حتی تو معمولی‌ترین روزها، یادت نره چقدر خاصی.
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>کار عالی</h3>
+                    <p>ارائه دهنده تخصصی‌ترین خدمات مراقبت از خودرو با بیش از ۱۰ سال سابقه درخشان و کادری مجرب و متخصص.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>لینک‌های سریع</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">خانه</a></li>
+                        <li><a href="#explanation">توضیحات خدمات</a></li>
+                        <li><a href="#services">خدمات</a></li>
+                        <li><a href="#process">فرآیند کار</a></li>
+                        <li><a href="#contact">تماس با ما</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>خدمات</h3>
+                    <ul class="footer-links">
+                        <li><a href="#explanation">لیسه‌گیری حرفه‌ای</a></li>
+                        <li><a href="#explanation">ریکاوری رنگ</a></li>
+                        <li><a href="#explanation">کاور سرامیک</a></li>
+                        <li><a href="#explanation">محافظ فیلم شفاف</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© ۱۴۰۳ کلیه حقوق برای مجموعه کار عالی (Caraali) محفوظ است.</p>
+            </div>
+        </div>
     </footer>
-</div>
-
-<script>
-    // ---------- تنظیمات ----------
-    // اسم دوست‌دخترت:
-    const herName = "سحر";
-
-    // ---------- متن‌های شعر + قربون‌صدقه ----------
-    const loveMessages = [
-        `${herName} جان، حافظ می‌گه: «در ازل پرتو حسنت ز تجلی دم زد / عشق پیدا شد و آتش به همه عالم زد»؛ برای من اون پرتو، چشم‌های توئه.`,
-        `${herName}، سعدی گفته: «بنده‌ی عشقم و از هر دو جهان آزادم»؛ کنار تو واقعاً همینم، انگار فقط بودنت کافیه.`,
-        `مولانا می‌گه: «تو مرا جان و جهانی، چه کنم جان و جهان را؟»؛ وقتی تویی، باقیِ دنیا فقط حاشیه‌ی داستان ماست، ${herName} جان.`,
-        `خیام می‌گه: «از دی که گذشت هیچ از او یاد مکن / فردا که نیامده‌ست فریاد مکن»؛ من فقط همین "الانِ کنار تو" رو می‌خوام، همین بودن با تو.`,
-        `باباطاهر می‌گه: «به صحرا بنگرم، صحرا تو بینم»؛ ${herName} جان، هر جا رو نگاه می‌کنم یه نشونی از تو پیدا می‌کنم.`,
-        `حافظ یه جا می‌گه: «منم که شهره‌ی شهرم به عشق ورزیدن»؛ منم دلم می‌خواد شهره باشم، ولی فقط به یه چیز: عاشقِ ${herName} بودن.`,
-        `سعدی می‌گه: «دلبر که در او هیچ نظر نیست که نیکوست»؛ این دقیقاً تعریف من از توئه؛ از سر تا پا قشنگ و دوست‌داشتنی.`,
-        `مولانا گفته: «هر لحظه به شکلی بتِ عیار برآمد»؛ تو هم هر روز یه شکل جدید از دوست‌داشتنی بودن رو رو می‌کنی، و من هر روز از نو عاشقت می‌شم.`,
-        `خیام می‌گه: «می خوردن و شاد بودن آیین من است»؛ آیین من از وقتی تو اومدی، شده "تو، خنده‌هات و بودن کنارِت".`,
-        `حافظ می‌گه: «تو خود حجابِ خودی، حافظ از میان برخیز»؛ منم هرچی غصه‌ست می‌ذارم کنار، فقط به تو و آرامشی که می‌دی فکر می‌کنم، ${herName}.`,
-        `${herName} جان، سعدی گفته: «عشق تو مرا از همه عالم بربود»؛ من هم دقیقاً همین حال و هوا رو با تو دارم؛ انگار بقیه‌ی دنیا کم‌رنگ‌تر شده.`,
-        `مولانا می‌گه: «ای جانِ جهان با تو چه بی‌جان شوم؟»؛ من بدون تو یه نسخه‌ی نصفه‌نیمه از خودمم، کاملِ من تویی.`,
-        `حافظ می‌گه: «درخت دوستی بنشان که کام دل به بار آرد»؛ تو همون درخت دوستی‌ای هستی که تو دلم کاشته شده و هر روز قشنگ‌تر می‌شه.`,
-        `باباطاهر می‌گه: «درونِ سینه‌ام جایی برای غیر تو نیست»؛ واقعاً هم توی قلب من فقط یه جا هست و اون برای توئه، ${herName} جان.`,
-        `سعدی می‌گه: «چنان در دل نشستی، گویی از ما بودی»؛ انگار از اول جزئی از من بودی که تازه پیدات کردم، نه کسی که از بیرون اومده باشه.`,
-        `خیام می‌گه: «گر یک نفست ز زندگانی گذرد / مگذار که جز به شادمانی گذرد»؛ شادمانی من یعنی لبخند تو، بغل تو و صدای تو.`,
-        `حافظ گفته: «دل می‌رود ز دستم، صاحب دلان خدا را»؛ هر بار می‌بینمت، دلم واقعاً از دستم در می‌ره و می‌ره سمتِ تو.`,
-        `مولانا می‌گه: «عشق آن شعله‌ست کاندر جان برفروزد»؛ تو اون شعله‌ای هستی که توی من روشن شده و خاموش‌شدنی نیست، ${herName}.`,
-        `${herName} جان، سعدی گفته: «نه دل از تو می‌بُرد و نه تو را فراموش می‌کند»؛ این دقیقاً وضعیتِ منه با تو؛ نه دل‌ بریدنی هست، نه فراموش شدنی.`,
-        `خیام می‌گه: «هر لحظه نو می‌شود دنیا و ما»؛ دنیای من هر روز با تو یه شکل تازه‌ی قشنگ‌تر می‌گیره.`,
-        `حافظ می‌گه: «تو کز مکارمِ اخلاق عالمی دگری»؛ برای من هم تو یه دنیای دیگه‌ای؛ مهربون‌تر، نجیب‌تر و قشنگ‌تر از همه.`,
-        `مولانا گفته: «از صدای پای عشق، تو اگر آگه شوی...»؛ من سال‌ها پیش، قبل از دیدنت، یه جوری منتظر تو بودم، بی‌آن‌که بدونم کی هستی.`,
-        `سعدی می‌گه: «چنانت دوست می‌دارم که گر روزی بپرسی من که‌ام، در جوابِ نامِ خود، نام تو را خواهم گرفت»؛ این دقیقاً حسِ من به توست، ${herName}.`,
-        `${herName} جان، همه‌ی این شعرها یه طرف، اون حسی که خودم بهت دارم، یه شعر جدا و بی‌انتهاست که هر روز داره طولانی‌تر می‌شه.`
-    ];
-
-    // ---------- چالش‌ها و سؤال‌های عشقی ----------
-    const challenges = [
-        `چالش: یه بیت عاشقانه از حافظ، سعدی یا مولانا پیدا کن که حس تو به من رو توصیف کنه و برام بفرست.`,
-        `چالش: یکی از شعرهایی رو که دوستش داری، با صدای خودت برام بخون و ویس بفرست.`,
-        `چالش: سه تا چیزی که تو من دوست داری رو بنویس و برای هرکدوم یه دلیل کوتاه بنویس.`,
-        `چالش: اولین خاطره‌ای که از من یادت میاد رو با جزئیات تعریف کن؛ جوری که انگار داری برام قصه می‌گی.`,
-        `چالش: امشب یه عکس از چیزی که باعث شد لبخند بزنی برام بفرست و بگو چرا.`,
-        `چالش: بدون استفاده از کلمه‌ی «دوستت دارم»، برام اعترافِ عشقی بنویس.`,
-        `چالش: یه پیام کوتاه برام بنویس که اگر یه روز حالم بد بود، با خوندنش حالم خوب شه.`,
-        `چالش: سه تا قول کوچیک ولی مهم برای رابط‌مون بنویس و برام بفرست.`,
-        `چالش: ده سال بعد خودمون رو تصور کن؛ اون تصویر رو تو پنج شش خط برام تعریف کن.`,
-        `چالش: یه لقبی که دوست داری فقط من صدات کنم انتخاب کن و دلیلش رو بگو.`,
-        `چالش: اگر الان کنار هم بودیم، دوست داشتی چی کار کنیم؟ با جزئیات برام تعریف کن.`,
-        `چالش: سه تا کاری که دوست داری باهم امتحان کنیم (سفر، تفریح، غذا، هرچی) رو لیست کن.`,
-        `چالش: یه خاطره‌ی خیلی ساده ولی قشنگ از من بگو که شاید خودمم یادم رفته باشه.`,
-        `چالش: امروز رو فقط با سه کلمه توصیف کن و بعد بگو من تو هر کدوم چه نقشی داشتم.`,
-        `چالش: یه کاری که قول می‌دی برای خوشحال کردن من تو این هفته انجام بدی رو انتخاب کن.`,
-        `چالش: یکی از آهنگ‌هایی که وقتی می‌شنوی یاد من می‌افتی رو بفرست و بگو کجاش تو رو یاد من می‌اندازه.`,
-        `چالش: اسم من رو قشنگ‌ترین جوری که می‌تونی روی یه کاغذ بنویس، ازش عکس بگیر و برام بفرست.`,
-        `چالش: یه قرار خیالی برای خودمون تو یه شهر یا کشور دیگه طراحی کن و برام با جزئیات تعریف کن.`,
-        `چالش: سه تا ترس یا نگرانی‌ات رو درباره‌ی آینده بگو و بنویس که من چطور می‌تونم کنارت باشم.`,
-        `چالش: یه لیست پنج‌تایی از چیزهای کوچیکی که باعث می‌شن حس دوست‌داشتنی بودن داشته باشی برام بنویس.`,
-        `چالش: یه بیت شعر عاشقانه بساز که توش اسم من هم باشه؛ حتی اگه خنده‌دار شد مهم نیست.`,
-        `چالش: تصور کن امروز سالگردمون باشه؛ یه متن کوتاه بنویس که اون روز دوست داشتی برام بفرستی.`,
-        `چالش: سه تا چیز که دوست داری تو رابطه‌مون همیشه حفظ بشه (حتی بعد سال‌ها) رو برام بنویس.`,
-        `چالش: یه خاطره‌ای که با فکر کردن بهش از خنده ریسه می‌ری رو برام تعریف کن؛ حتی اگه من توش نبودم.`,
-        `چالش: اگر بخوای یه فیلم در مورد داستانِ ما بسازی، اسمش چی می‌شه و آخرش چطور تموم می‌شه؟`,
-        `چالش: امشب قبل خواب، سه تا چیزی که بابتشون از من ممنونی رو بنویس و برام بفرست.`,
-        `چالش: یه نامه‌ی خیلی کوتاه برای «خودِ کوچیکت» بنویس و توش از رابطه‌ی الان‌مون براش تعریف کن.`,
-        `چالش: فردا یه کار خیلی کوچیک ولی متفاوت فقط به نیت خوشحال کردن من انجام بده و بعدش بگو چی کار کردی.`
-    ];
-
-    // ---------- توابع کمکی ----------
-    function getRandomItem(arr) {
-        return arr[Math.floor(Math.random() * arr.length)];
-    }
-
-    function showAnimatedText(element, text) {
-        element.classList.remove("show");
-        // ترفند برای ری‌استارت انیمیشن
-        void element.offsetWidth;
-        element.textContent = text;
-        element.classList.add("show");
-    }
-
-    function createHeartBurst() {
-        const count = 8 + Math.floor(Math.random() * 5);
-        for (let i = 0; i < count; i++) {
-            const heart = document.createElement("div");
-            heart.className = "heart";
-
-            const size = 10 + Math.random() * 14;
-            heart.style.width = size + "px";
-            heart.style.height = size + "px";
-
-            const left = Math.random() * 100;
-            heart.style.left = left + "vw";
-
-            const duration = 4 + Math.random() * 3;
-            heart.style.animationDuration = duration + "s";
-
-            const delay = Math.random() * 0.6;
-            heart.style.animationDelay = delay + "s";
-
-            document.body.appendChild(heart);
-
-            setTimeout(() => {
-                heart.remove();
-            }, (duration + delay) * 1000);
+    
+    <script>
+        // منوی موبایل
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mobileMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // اسکرول نرم
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // بستن منوی موبایل
+                    mobileMenu.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    
+                    // آپدیت لینک فعال
+                    document.querySelectorAll('nav a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                }
+            });
+        });
+        
+        // دکمه بازگشت به بالا
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('active');
+            } else {
+                backToTop.classList.remove('active');
+            }
+        });
+        
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // شمارنده آمار
+        const counters = document.querySelectorAll('.stat-number-large');
+        const speed = 200;
+        
+        const startCounter = () => {
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-count');
+                    const count = +counter.innerText;
+                    const increment = target / speed;
+                    
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + increment);
+                        setTimeout(updateCount, 20);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            });
+        };
+        
+        // فعال کردن شمارنده وقتی بخش آمار دیده شد
+        const statsSection = document.querySelector('.stats');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    startCounter();
+                    observer.unobserve(statsSection);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        if (statsSection) observer.observe(statsSection);
+        
+        // فرم تماس
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // گرفتن مقادیر فرم
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const carModel = document.getElementById('carModel').value;
+            const service = document.getElementById('service').value;
+            
+            // در واقعیت اینجا داده‌ها به سرور ارسال می‌شود
+            // برای دمو فقط یک پیام نشان می‌دهیم
+            alert(`درخواست شما با موفقیت ثبت شد!\n\nنام: ${name}\nشماره تماس: ${phone}\nمدل خودرو: ${carModel}\nخدمت مورد نظر: ${service}\n\nکارشناسان ما در اسرع وقت با شما تماس خواهند گرفت.`);
+            
+            // ریست کردن فرم
+            contactForm.reset();
+        });
+        
+        // انیمیشن اسکرول
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // تنظیم اولیه برای عناصر fade-in
+        fadeElements.forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        });
+        
+        window.addEventListener('scroll', fadeInOnScroll);
+        fadeInOnScroll(); // اجرای اولیه
+        
+        // فعال کردن لینک‌های منو بر اساس اسکرول
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // هور افکت روی کارت‌های توضیحات
+        document.querySelectorAll('.explanation-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-15px)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+        
+        // تغییر عکس هیرو بر اساس زمان
+        const heroImages = [
+            'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80',
+            'https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80',
+            'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80'
+        ];
+        
+        let currentImageIndex = 0;
+        const heroSection = document.querySelector('.hero');
+        
+        function changeHeroImage() {
+            currentImageIndex = (currentImageIndex + 1) % heroImages.length;
+            heroSection.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9)), url('${heroImages[currentImageIndex]}')`;
         }
-    }
-
-    // ---------- راه‌اندازی اولیه ----------
-    document.addEventListener("DOMContentLoaded", () => {
-        const titleEl = document.getElementById("titleText");
-        const subtitleEl = document.getElementById("subtitleText");
-        const specialTag = document.getElementById("specialTag");
-
-        titleEl.textContent = `برای ${herName}؛ قشنگ‌ترین اتفاق زندگی من`;
-        subtitleEl.textContent = `این‌جا جاییه که هر بار دلت قربون‌صدقه و شعر خواست، فقط با یه کلیک، نازت رو می‌کشه.`;
-        specialTag.textContent = `ساخته شده فقط برای ${herName}`;
-
-        const loveBtn = document.getElementById("loveBtn");
-        const allBtn = document.getElementById("allInOneBtn");
-        const challengeBtn = document.getElementById("challengeBtn");
-        const loveMessageEl = document.getElementById("loveMessage");
-        const challengeMessageEl = document.getElementById("challengeMessage");
-
-        loveBtn.addEventListener("click", () => {
-            const msg = getRandomItem(loveMessages);
-            showAnimatedText(loveMessageEl, msg);
-            createHeartBurst();
-        });
-
-        challengeBtn.addEventListener("click", () => {
-            const ch = getRandomItem(challenges);
-            showAnimatedText(challengeMessageEl, ch);
-            createHeartBurst();
-        });
-
-        allBtn.addEventListener("click", () => {
-            const msg = getRandomItem(loveMessages);
-            const ch = getRandomItem(challenges);
-            showAnimatedText(loveMessageEl, msg);
-            showAnimatedText(challengeMessageEl, ch);
-            createHeartBurst();
-        });
-    });
-</script>
+        
+        // تغییر خودکار عکس هر ۱۰ ثانیه
+        setInterval(changeHeroImage, 10000);
+    </script>
 </body>
 </html>
+
