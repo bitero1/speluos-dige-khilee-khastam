@@ -3,1533 +3,396 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>کار عالی (Caraali) - مرکز تخصصی مراقبت از خودرو</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>منوی کافه | اسپرلوس</title>
+    <!-- فونت وزیرمتن و آیکون‌های فون‌اووسام -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Reset و فونت‌ها */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         :root {
-            --primary-red: #D32F2F;
-            --dark-red: #B71C1C;
-            --light-red: #FF5252;
-            --gray-dark: #212121;
-            --gray-medium: #424242;
-            --gray-light: #757575;
-            --gray-bg: #FAFAFA;
-            --gray-border: #E0E0E0;
-            --white: #FFFFFF;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --accent-rose: #b76e79;      /* رنگ رز پینترستی */
+            --accent-gold: #c5a992;       /* رنگ قهوه‌ای ملایم */
+            --bg-light: #fefbf8;          /* کرم خنثی */
+            --text-dark: #2c2c2c;
+            --text-soft: #5f5f5f;
+            --border-light: #f0e4dd;
+            --shadow-sm: 0 10px 30px -10px rgba(0,0,0,0.08);
         }
-        
+
         body {
-            font-family: 'Vazirmatn', 'Roboto', sans-serif;
-            background-color: var(--gray-bg);
-            color: var(--gray-dark);
-            line-height: 1.8;
-            overflow-x: hidden;
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+            position: relative;
+            /* تم پینترستی: بافت پارچه‌ای / کاغذی با رز */
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(235, 215, 205, 0.3) 0%, transparent 30%),
+                radial-gradient(circle at 90% 70%, rgba(200, 160, 150, 0.2) 0%, transparent 40%),
+                repeating-linear-gradient(45deg, rgba(190, 120, 120, 0.02) 0px, rgba(190, 120, 120, 0.02) 2px, transparent 2px, transparent 6px);
+            min-height: 100vh;
         }
-        
-        .container {
-            width: 90%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
+
+        /* لایه نیمه‌شفاف روی بک‌گراند برای خوانایی */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 250, 245, 0.3);
+            backdrop-filter: blur(1px);
+            pointer-events: none;
+            z-index: -1;
         }
-        
+
         /* هدر */
         header {
-            background: var(--white);
-            box-shadow: var(--shadow);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            border-bottom: 4px solid var(--primary-red);
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .logo-icon {
-            background: var(--primary-red);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-        }
-        
-        .logo-text h1 {
-            font-size: 1.8rem;
-            color: var(--gray-dark);
-            margin-bottom: 5px;
-        }
-        
-        .logo-text span {
-            color: var(--primary-red);
-            font-weight: 700;
-        }
-        
-        .logo-text p {
-            color: var(--gray-light);
-            font-size: 0.9rem;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-        
-        nav a {
-            color: var(--gray-medium);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1rem;
-            padding: 8px 15px;
-            border-radius: 5px;
-            transition: var(--transition);
-            position: relative;
-        }
-        
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            right: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-red);
-            transition: var(--transition);
-        }
-        
-        nav a:hover::after,
-        nav a.active::after {
-            width: 100%;
-        }
-        
-        nav a:hover,
-        nav a.active {
-            color: var(--primary-red);
-        }
-        
-        .header-contact {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        
-        .phone-number {
-            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
-            color: white;
-            padding: 12px 25px;
-            border-radius: 30px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3);
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: 2px solid var(--primary-red);
-            color: var(--primary-red);
-            width: 45px;
-            height: 45px;
-            border-radius: 8px;
-            font-size: 1.3rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .mobile-menu-btn:hover {
-            background: var(--primary-red);
-            color: white;
-        }
-        
-        /* بخش هیرو */
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9)), 
-                        url('https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 180px 0 120px;
-            margin-top: 80px;
             text-align: center;
+            padding: 30px 20px 20px;
+            background: rgba(255, 252, 249, 0.85);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(183, 110, 121, 0.15);
+            transition: all 0.3s;
+            box-shadow: var(--shadow-sm);
         }
-        
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .hero h1 {
-            font-size: 3.2rem;
-            margin-bottom: 25px;
-            line-height: 1.3;
-            font-weight: 700;
-        }
-        
-        .hero h1 span {
-            color: var(--light-red);
-            position: relative;
-        }
-        
-        .hero h1 span::after {
-            content: '';
-            position: absolute;
-            bottom: 5px;
-            right: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--light-red);
-            opacity: 0.5;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            color: rgba(255, 255, 255, 0.9);
-            max-width: 600px;
-            margin: 0 auto 40px;
-        }
-        
-        /* دکمه‌ها */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 16px 35px;
-            border-radius: 30px;
+
+        h1 {
             font-weight: 600;
-            font-size: 1rem;
-            text-decoration: none;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
+            font-size: 2.4rem;
+            letter-spacing: -0.5px;
+            color: #4a3832;
+            display: inline-block;
+            border-bottom: 3px double var(--accent-rose);
+            padding-bottom: 10px;
+            margin-bottom: 10px;
         }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
-            color: white;
-            box-shadow: 0 6px 20px rgba(211, 47, 47, 0.3);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(211, 47, 47, 0.4);
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-        
-        .btn-secondary:hover {
-            background: white;
-            color: var(--primary-red);
-        }
-        
-        .hero-buttons {
+
+        nav ul {
+            list-style: none;
             display: flex;
-            gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
+            gap: 8px 18px;
+            margin: 20px 0 5px;
         }
-        
-        /* بخش توضیحات خدمات */
-        .services-explanation {
-            padding: 120px 0;
-            background: var(--white);
-        }
-        
-        .explanation-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
-        }
-        
-        .explanation-card {
-            background: var(--white);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border: 1px solid var(--gray-border);
-        }
-        
-        .explanation-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            border-color: var(--primary-red);
-        }
-        
-        .explanation-icon {
-            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            color: white;
-        }
-        
-        .explanation-content {
-            padding: 30px;
-        }
-        
-        .explanation-content h3 {
-            font-size: 1.5rem;
-            color: var(--gray-dark);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .explanation-content h3 i {
-            color: var(--primary-red);
-        }
-        
-        .explanation-content p {
-            color: var(--gray-medium);
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-        
-        .explanation-features {
-            margin: 25px 0;
-        }
-        
-        .explanation-features li {
-            list-style: none;
-            padding: 8px 0;
-            color: var(--gray-medium);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .explanation-features i {
-            color: var(--primary-red);
-            font-size: 0.9rem;
-        }
-        
-        .explanation-stats {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 25px;
-            padding-top: 25px;
-            border-top: 1px solid var(--gray-border);
-        }
-        
-        .stat-item {
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-red);
-            display: block;
-        }
-        
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--gray-light);
-            margin-top: 5px;
-        }
-        
-        /* خدمات */
-        .services {
-            padding: 120px 0;
-            background: var(--gray-bg);
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-            position: relative;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--gray-dark);
-            margin-bottom: 15px;
-            position: relative;
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-soft);
+            font-size: 0.95rem;
+            font-weight: 400;
+            padding: 5px 2px;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+            cursor: pointer;
             display: inline-block;
-            padding-bottom: 15px;
         }
-        
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 50%;
-            transform: translateX(50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-red), var(--dark-red));
-            border-radius: 2px;
+
+        nav a:hover, nav a.active {
+            color: var(--accent-rose);
+            border-bottom-color: var(--accent-rose);
+            font-weight: 500;
         }
-        
-        .section-title p {
-            color: var(--gray-light);
-            max-width: 700px;
-            margin: 0 auto;
-            font-size: 1.1rem;
+
+        /* بخش اصلی */
+        main {
+            max-width: 750px;
+            margin: 30px auto 50px;
+            padding: 10px 25px 40px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(3px);
+            border-radius: 48px 48px 32px 32px;
+            box-shadow: 0 20px 40px -15px rgba(90, 60, 50, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.7);
         }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+
+        section {
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(18px);
+            animation: fadeUp 0.7s forwards;
         }
-        
-        .service-card {
-            background: var(--white);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
         }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .service-image {
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .service-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .service-card:hover .service-image img {
-            transform: scale(1.1);
-        }
-        
-        .service-content {
-            padding: 25px;
-        }
-        
-        .service-content h3 {
-            font-size: 1.4rem;
-            color: var(--gray-dark);
-            margin-bottom: 15px;
-        }
-        
-        .service-content p {
-            color: var(--gray-medium);
-            margin-bottom: 20px;
-            line-height: 1.7;
-        }
-        
-        .service-meta {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid var(--gray-border);
-        }
-        
-        .service-meta span {
+
+        .category-title {
+            font-size: 1.9rem;
+            font-weight: 300;
+            margin-bottom: 25px;
+            padding-right: 20px;
+            border-right: 5px solid var(--accent-rose);
+            color: #3e2e28;
             display: flex;
             align-items: center;
             gap: 8px;
-            color: var(--gray-light);
-            font-size: 0.9rem;
         }
-        
-        .service-meta i {
-            color: var(--primary-red);
+        .category-title i {
+            color: var(--accent-rose);
+            font-size: 1.8rem;
+            opacity: 0.7;
         }
-        
-        /* فرآیند کار */
-        .process {
-            padding: 120px 0;
-            background: var(--white);
-        }
-        
-        .process-steps {
+
+        /* آیتم‌های منو */
+        .menu-item {
             display: flex;
             justify-content: space-between;
-            margin-top: 60px;
-            position: relative;
+            align-items: flex-start;
+            margin-bottom: 22px;
+            padding-bottom: 18px;
+            border-bottom: 1px dashed rgba(183, 110, 121, 0.25);
+            transition: 0.2s;
         }
-        
-        .process-steps::before {
-            content: '';
-            position: absolute;
-            top: 40px;
-            right: 0;
-            left: 0;
-            height: 2px;
-            background: var(--gray-border);
-            z-index: 1;
+        .menu-item:hover {
+            background: rgba(250, 240, 235, 0.5);
+            padding-right: 12px;
+            border-radius: 0 20px 20px 0;
         }
-        
-        .process-step {
+
+        .item-details {
             flex: 1;
-            text-align: center;
-            position: relative;
-            z-index: 2;
+            padding-left: 15px;
         }
-        
-        .step-number {
-            width: 80px;
-            height: 80px;
-            background: var(--white);
-            border: 3px solid var(--primary-red);
-            border-radius: 50%;
+
+        .item-name {
+            font-size: 1.18rem;
+            font-weight: 550;
+            color: #3f2f29;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-red);
-            margin: 0 auto 25px;
-            transition: var(--transition);
+            gap: 6px;
         }
-        
-        .process-step:hover .step-number {
-            background: var(--primary-red);
-            color: white;
-            transform: scale(1.1);
-        }
-        
-        .step-content {
-            padding: 0 15px;
-        }
-        
-        .step-content h4 {
-            font-size: 1.2rem;
-            color: var(--gray-dark);
-            margin-bottom: 10px;
-        }
-        
-        .step-content p {
-            color: var(--gray-medium);
-            font-size: 0.95rem;
-        }
-        
-        /* آمار */
-        .stats {
-            padding: 100px 0;
-            background: linear-gradient(135deg, var(--dark-red), var(--primary-red));
-            color: white;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-        }
-        
-        .stat-item-large {
-            text-align: center;
-            padding: 30px;
-        }
-        
-        .stat-number-large {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            display: block;
-        }
-        
-        .stat-text-large {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        
-        /* تماس */
-        .contact {
-            padding: 120px 0;
-            background: var(--gray-bg);
-        }
-        
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
-        }
-        
-        .contact-info {
-            background: var(--white);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-        }
-        
-        .contact-info h3 {
-            color: var(--gray-dark);
-            margin-bottom: 30px;
-            font-size: 1.8rem;
-            padding-bottom: 15px;
-            border-bottom: 3px solid var(--primary-red);
-        }
-        
-        .contact-details li {
-            list-style: none;
-            padding: 15px 0;
-            border-bottom: 1px solid var(--gray-border);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .contact-details i {
-            color: var(--primary-red);
-            width: 30px;
-            font-size: 1.2rem;
-        }
-        
-        .contact-form {
-            background: var(--white);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-        }
-        
-        .form-group {
-            margin-bottom: 25px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--gray-dark);
-            font-weight: 500;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid var(--gray-border);
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-        
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary-red);
-            box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        /* فوتر */
-        footer {
-            background: var(--gray-dark);
-            color: white;
-            padding: 80px 0 30px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-        
-        .footer-column h3 {
-            color: white;
-            margin-bottom: 25px;
-            font-size: 1.3rem;
-            position: relative;
-            padding-bottom: 15px;
-        }
-        
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--primary-red);
-        }
-        
-        .footer-links li {
-            list-style: none;
-            margin-bottom: 12px;
-        }
-        
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .footer-links a:hover {
-            color: var(--light-red);
-            padding-right: 10px;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .social-links a:hover {
-            background: var(--primary-red);
-            transform: translateY(-3px);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.7);
+        .item-name i {
+            color: var(--accent-rose);
             font-size: 0.9rem;
+            opacity: 0.6;
         }
-        
-        /* ریسپانسیو */
-        @media (max-width: 992px) {
-            .header-content {
-                padding: 15px 0;
-            }
-            
-            nav {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .mobile-menu {
-                position: fixed;
-                top: 80px;
-                right: -100%;
-                width: 100%;
-                height: calc(100vh - 80px);
-                background: var(--white);
-                transition: var(--transition);
-                z-index: 999;
-                padding: 40px;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            }
-            
-            .mobile-menu.active {
-                right: 0;
-            }
-            
-            .mobile-menu ul {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .mobile-menu a {
-                font-size: 1.2rem;
-                padding: 15px;
-                display: block;
-                border-right: 3px solid transparent;
-                transition: var(--transition);
-            }
-            
-            .mobile-menu a:hover {
-                border-right-color: var(--primary-red);
-                background: rgba(211, 47, 47, 0.05);
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .process-steps {
-                flex-direction: column;
-                gap: 40px;
-            }
-            
-            .process-steps::before {
-                display: none;
-            }
+
+        .item-desc {
+            font-size: 0.82rem;
+            color: #6f5e58;
+            font-weight: 300;
+            margin-top: 4px;
+            letter-spacing: 0.2px;
         }
-        
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn {
-                width: 100%;
-                justify-content: center;
-                margin-bottom: 10px;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-            
-            .header-contact {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .phone-number {
-                padding: 10px 20px;
-                font-size: 0.9rem;
-            }
+
+        .item-price {
+            font-weight: 650;
+            font-size: 1.1rem;
+            white-space: nowrap;
+            background: rgba(183, 110, 121, 0.1);
+            padding: 4px 14px;
+            border-radius: 30px;
+            color: #7a4d4d;
+            border: 1px solid rgba(183, 110, 121, 0.2);
+            backdrop-filter: blur(2px);
         }
-        
-        /* انیمیشن‌ها */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+
+        .currency {
+            font-size: 0.65rem;
+            font-weight: 300;
+            margin-right: 4px;
+            color: #8a6a5c;
         }
-        
-        .fade-in {
-            animation: fadeInUp 0.8s ease forwards;
+
+        /* فوتر با تم پینترستی - فقط اینستا و واتساپ */
+        footer {
+            text-align: center;
+            padding: 30px 20px 20px;
+            background: rgba(245, 235, 225, 0.7);
+            backdrop-filter: blur(5px);
+            border-top: 1px solid #e3d3cb;
+            font-size: 0.95rem;
+            color: #57443c;
+            margin-top: 40px;
         }
-        
-        /* دکمه بازگشت به بالا */
-        .back-to-top {
+
+        .social-links a {
+            color: #8b5e5e;
+            margin: 0 12px;
+            font-size: 1.8rem;
+            transition: 0.2s;
+            display: inline-block;
+        }
+        .social-links a:hover {
+            color: var(--accent-rose);
+            transform: scale(1.1) translateY(-3px);
+        }
+
+        /* موبایل */
+        @media (max-width: 500px) {
+            h1 { font-size: 1.9rem; }
+            main { padding: 10px 18px; border-radius: 32px; }
+            .menu-item { flex-direction: column; align-items: flex-start; }
+            .item-price { margin-top: 8px; align-self: flex-end; }
+            .category-title { font-size: 1.6rem; }
+        }
+
+        /* دکمه تزئینی پینترست (اختیاری، می‌توانید حذف کنید) */
+        .pinterest-mood {
             position: fixed;
-            bottom: 30px;
-            left: 30px;
-            width: 50px;
-            height: 50px;
-            background: var(--primary-red);
-            color: white;
+            bottom: 20px;
+            left: 20px;
+            background: white;
+            width: 45px; height: 45px;
             border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(183,110,121,0.3);
             display: flex;
             align-items: center;
             justify-content: center;
-            text-decoration: none;
-            font-size: 1.2rem;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-            z-index: 100;
-            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3);
-        }
-        
-        .back-to-top.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .back-to-top:hover {
-            background: var(--dark-red);
-            transform: translateY(-5px);
+            color: var(--accent-rose);
+            font-size: 1.4rem;
+            backdrop-filter: blur(5px);
+            border: 1px solid white;
+            opacity: 0.6;
+            transition: 0.2s;
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
-    <!-- دکمه بازگشت به بالا -->
-    <a href="#" class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
-    </a>
-    
-    <!-- هدر -->
-    <header>
-        <div class="container header-content">
-            <div class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-car"></i>
-                </div>
-                <div class="logo-text">
-                    <h1>کار <span>عالی</span></h1>
-                    <p>مرکز تخصصی مراقبت از خودرو</p>
-                </div>
-            </div>
-            
-            <nav>
-                <ul>
-                    <li><a href="#home" class="active">خانه</a></li>
-                    <li><a href="#explanation">توضیحات خدمات</a></li>
-                    <li><a href="#services">خدمات</a></li>
-                    <li><a href="#process">فرآیند کار</a></li>
-                    <li><a href="#contact">تماس</a></li>
-                </ul>
-            </nav>
-            
-            <div class="header-contact">
-                <div class="phone-number">
-                    <i class="fas fa-phone-alt"></i>
-                    <span>۰۲۱-۱۲۳۴۵۶۷۸</span>
-                </div>
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-    </header>
-    
-    <!-- منوی موبایل -->
-    <div class="mobile-menu" id="mobileMenu">
+
+<header id="main-header">
+    <h1>اسپرلوس <i class="fas fa-coffee" style="font-size: 2rem; color: #b76e79; margin-right: 8px;"></i></h1>
+    <nav>
         <ul>
-            <li><a href="#home">خانه</a></li>
-            <li><a href="#explanation">توضیحات خدمات</a></li>
-            <li><a href="#services">خدمات</a></li>
-            <li><a href="#process">فرآیند کار</a></li>
-            <li><a href="#contact">تماس</a></li>
+            <li><a onclick="scrollToSection('hot-coffee')"><i class="fas fa-fire"></i> قهوه گرم</a></li>
+            <li><a onclick="scrollToSection('cold-coffee')"><i class="fas fa-snowflake"></i> بار سرد</a></li>
+            <li><a onclick="scrollToSection('tea')"><i class="fas fa-leaf"></i> دم‌نوش‌ها</a></li>
+            <li><a onclick="scrollToSection('cakes')"><i class="fas fa-cake-candles"></i> کیک و شیک</a></li>
+            <li><a onclick="scrollToSection('breakfast')"><i class="fas fa-egg"></i> صبحانه</a></li>
         </ul>
+    </nav>
+</header>
+
+<main>
+    <!-- قهوه گرم -->
+    <section id="hot-coffee">
+        <h2 class="category-title"><i class="fas fa-mug-hot"></i> قهوه گرم</h2>
+        <div class="menu-item"><div class="item-details"><span class="item-name"><i class="fas fa-seedling"></i> اسپرسو (تک / دبل)</span><p class="item-desc">روبستا 70/30</p></div><div class="item-price">80/90 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name"><i class="fas fa-seedling"></i> اسپرسو (تک / دبل)</span><p class="item-desc">عربیکا 80/20</p></div><div class="item-price">110/130 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name"><i class="fas fa-water"></i> آمریکانو</span><p class="item-desc">اسپرسو دبل شات + آب داغ</p></div><div class="item-price">90/130 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name"><i class="fas fa-whiskey-glass"></i> کاپوچینو</span><p class="item-desc">اسپرسو، شیر بخار داده شده، فوم شیر</p></div><div class="item-price">120/150 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name"><i class="fas fa-mug-saucer"></i> لته</span><p class="item-desc">ترکیب ملایم اسپرسو و شیر زیاد</p></div><div class="item-price">130/170 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name"><i class="fas fa-candy-cane"></i> کارامل ماکیاتو</span><p class="item-desc">اسپرسو، شیر، سیروپ وانیل و کارامل</p></div><div class="item-price">190 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name"><i class="fas fa-chocolate"></i> موکا</span><p class="item-desc">سس شکلات + قهوه + شیر</p></div><div class="item-price">180 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name"><i class="fas fa-chocolate"></i> موکاتلا</span><p class="item-desc">نوتلا + قهوه + شیر</p></div><div class="item-price">200 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name"><i class="fas fa-cup"></i> کورتادو</span><p class="item-desc">قهوه + شیر</p></div><div class="item-price">110/130 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name"><i class="fas fa-mug-hot"></i> هات چاکلت</span><p class="item-desc">پودر هات‌چاکلت + شیر</p></div><div class="item-price">180 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name"><i class="fas fa-heart"></i> پینک چاکلت</span><p class="item-desc">پودر پینک چاکلت + شیر</p></div><div class="item-price">180 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name"><i class="fas fa-chocolate"></i> هات نوتلا</span><p class="item-desc">نوتلا + شیر</p></div><div class="item-price">200 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name"><i class="fas fa-cookie"></i> هات لوتوس</span><p class="item-desc">کره بیسکویت لوتوس + شیر</p></div><div class="item-price">200 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name"><i class="fas fa-jar"></i> شیر عسل</span><p class="item-desc">عسل + شیر</p></div><div class="item-price">120 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name"><i class="fas fa-jar"></i> شیر عسل دارچین</span><p class="item-desc">دارچین + عسل + شیر</p></div><div class="item-price">130 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name"><i class="fas fa-jar"></i> شیر عسل زعفران</span><p class="item-desc">زعفران + عسل + شیر</p></div><div class="item-price">150 <span class="currency">هزار تومان</span></div></div>
+    </section>
+
+    <!-- بار سرد -->
+    <section id="cold-coffee">
+        <h2 class="category-title"><i class="fas fa-ice-cream"></i> نوشیدنی‌های سرد</h2>
+        <div class="menu-item"><div class="item-details"><span class="item-name">آیس آمریکانو</span><p class="item-desc">اسپرسو، آب سرد، یخ</p></div><div class="item-price">100/140 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">آیس لته</span><p class="item-desc">شیر سرد، یخ، اسپرسو</p></div><div class="item-price">140/180 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">آیس موکا</span><p class="item-desc"></p></div><div class="item-price">190 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">آفوگاتو</span><p class="item-desc">یک اسکوپ بستنی + اسپرسو</p></div><div class="item-price">140 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">آیس کارامل ماکیاتو</span><p class="item-desc"></p></div><div class="item-price">200 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">آیس لوتوس</span><p class="item-desc"></p></div><div class="item-price">210 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">آیس اورنجی کانو</span><p class="item-desc"></p></div><div class="item-price">210 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">لیموناد</span><p class="item-desc"></p></div><div class="item-price">130 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">موهیتو</span><p class="item-desc"></p></div><div class="item-price">140 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">رد موهیتو</span><p class="item-desc"></p></div><div class="item-price">200 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">بلو موهیتو</span><p class="item-desc"></p></div><div class="item-price">200 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">پینک مون</span><p class="item-desc"></p></div><div class="item-price">230 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">لیدی مری</span><p class="item-desc"></p></div><div class="item-price">230 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">سان ست</span><p class="item-desc"></p></div><div class="item-price">230 <span class="currency">هزار تومان</span></div></div>
+    </section>
+
+    <!-- چای و دمنوش -->
+    <section id="tea">
+        <h2 class="category-title"><i class="fas fa-leaf"></i> چای و دم‌نوش</h2>
+        <div class="menu-item"><div class="item-details"><span class="item-name">چای سیاه دمی</span><p class="item-desc"></p></div><div class="item-price">50 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">چای ماسالا</span><p class="item-desc">ترکیب ادویه‌های هندی و شیر</p></div><div class="item-price">120 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">دمنوش آرامش</span><p class="item-desc">گل‌گاوزبان، اسطوخودوس، به لیمو</p></div><div class="item-price">120 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">چای سبز</span><p class="item-desc">آنتی اکسیدان بالا</p></div><div class="item-price">80 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">چای مراکشی</span><p class="item-desc">چای سبز، نعنا، به لیمو</p></div><div class="item-price">120 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">چای ویژه اسپرلوس</span><p class="item-desc">هل، دارچین، زعفران</p></div><div class="item-price">80 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">دمنوش سرما خوردگی</span><p class="item-desc">آویشن، زنجبیل، دارچین، به لیمو</p></div><div class="item-price">120 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">چای ترش</span><p class="item-desc">چای ترش + عناب</p></div><div class="item-price">80/100 <span class="currency">هزار تومان</span></div></div>
+    </section>
+
+    <!-- کیک و شیک -->
+    <section id="cakes">
+        <h2 class="category-title"><i class="fas fa-cake-candles"></i> کیک و شیک</h2>
+        <div class="menu-item"><div class="item-details"><span class="item-name">کیک هویج گردو</span><p class="item-desc"></p></div><div class="item-price">170 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">کیک شکلاتی خیس</span><p class="item-desc">همراه با سس شکلات</p></div><div class="item-price">170 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">کوکی شکلاتی</span><p class="item-desc">شکلاتی</p></div><div class="item-price">30 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">تیرامیسو</span><p class="item-desc"></p></div><div class="item-price">160 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">شیک شکلات</span><p class="item-desc"></p></div><div class="item-price">250 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">شیک نوتلا</span><p class="item-desc"></p></div><div class="item-price">300 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">شیک بادام زمینی</span><p class="item-desc"></p></div><div class="item-price">300 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">شیک اسپرسو</span><p class="item-desc"></p></div><div class="item-price">300 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">شیک موز شکلات</span><p class="item-desc"></p></div><div class="item-price">300 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">شیک کره بیسکویت</span><p class="item-desc"></p></div><div class="item-price">300 <span class="currency">هزار تومان</span></div></div>
+    </section>
+
+    <!-- صبحانه -->
+    <section id="breakfast">
+        <h2 class="category-title"><i class="fas fa-bacon"></i> صبحانه و میان‌وعده</h2>
+        <div class="menu-item"><div class="item-details"><span class="item-name">صبحانه انگلیسی</span><p class="item-desc">تخم مرغ، لوبیا، سوسیس، بیکن</p></div><div class="item-price">690 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">املت کلاسیک</span><p class="item-desc">گوجه فرنگی تازه، تخم مرغ</p></div><div class="item-price">250 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">تست عسل و خامه</span><p class="item-desc">نان تست، عسل، خامه</p></div><div class="item-price">120 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">سوسیس تخم مرغ</span><p class="item-desc"></p></div><div class="item-price">200 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">سوسیس بندری</span><p class="item-desc"></p></div><div class="item-price">200 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">همبرگر</span><p class="item-desc"></p></div><div class="item-price">300 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">سیب ویژه</span><p class="item-desc">سیب زمینی، پنیر پیتزا، کالباس</p></div><div class="item-price">350 <span class="currency">هزار تومان</span></div></div>
+        <div class="menu-item"><div class="item-details"><span class="item-name">ساندویچ کالباس</span><p class="item-desc"></p></div><div class="item-price">120 <span class="currency">هزار تومان</span></div></div>
+    </section>
+</main>
+
+<footer>
+    <p>خوش‌آمدید به <i class="fas fa-heart" style="color: #b76e79;"></i> کافه اسپرلوس</p>
+    <div class="social-links">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
     </div>
-    
-    <!-- هیرو -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1 class="fade-in">مراقبت <span>حرفه‌ای</span> از خودرو با کیفیت <span>بینظیر</span></h1>
-            <p class="fade-in">با بیش از ۱۰ سال تجربه در ارائه خدمات تخصصی لیسه‌گیری، ریکاوری رنگ، کاور سرامیک و محافظ فیلم شفاف برای خودروهای لوکس و معمولی</p>
-            <div class="hero-buttons fade-in">
-                <a href="#explanation" class="btn btn-primary">
-                    <i class="fas fa-info-circle"></i>
-                    توضیحات خدمات
-                </a>
-                <a href="#contact" class="btn btn-secondary">
-                    <i class="fas fa-calendar-check"></i>
-                    رزرو نوبت
-                </a>
-            </div>
-        </div>
-    </section>
-    
-    <!-- بخش توضیحات خدمات -->
-    <section class="services-explanation" id="explanation">
-        <div class="container">
-            <div class="section-title">
-                <h2>توضیحات کامل خدمات</h2>
-                <p>در این بخش به طور مفصل با خدمات تخصصی ما آشنا شوید</p>
-            </div>
-            
-            <div class="explanation-grid">
-                <div class="explanation-card fade-in">
-                    <div class="explanation-icon">
-                        <i class="fas fa-spray-can"></i>
-                    </div>
-                    <div class="explanation-content">
-                        <h3><i class="fas fa-paint-roller"></i> لیسه‌گیری حرفه‌ای (Paint Correction)</h3>
-                        <p>لیسه‌گیری فرآیندی تخصصی است که با استفاده از دستگاه‌های پولیش صنعتی و مواد تخصصی، خط و خش‌های سطحی، سوئیـل، آثار پرنده و آلودگی‌های شیمیایی را از روی بدنه خودرو کاملاً برطرف می‌کند.</p>
-                        
-                        <div class="explanation-features">
-                            <ul>
-                                <li><i class="fas fa-check"></i> پولیش سه مرحله‌ای (Cutting, Polishing, Finishing)</li>
-                                <li><i class="fas fa-check"></i> استفاده از پدهای حرفه‌ای و مواد درجه یک</li>
-                                <li><i class="fas fa-check"></i> بازگرداندن ۹۵٪ براقیت اولیه خودرو</li>
-                                <li><i class="fas fa-check"></i> حذف کامل آثار UV و اکسیداسیون</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="explanation-stats">
-                            <div class="stat-item">
-                                <span class="stat-number">۱-۲ روز</span>
-                                <span class="stat-label">مدت زمان</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">۱۸ ماه</span>
-                                <span class="stat-label">گارانتی</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">۱۰۰٪</span>
-                                <span class="stat-label">رضایت</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="explanation-card fade-in">
-                    <div class="explanation-icon">
-                        <i class="fas fa-paint-roller"></i>
-                    </div>
-                    <div class="explanation-content">
-                        <h3><i class="fas fa-redo"></i> ریکاوری رنگ (Paint Restoration)</h3>
-                        <p>ریکاوری رنگ مخصوص خودروهای قدیمی و فرسوده است که رنگ اصلی خود را از دست داده‌اند. این فرآیند شامل احیای کامل رنگ، برگرداندن شفافیت و درخشندگی اولیه می‌شود.</p>
-                        
-                        <div class="explanation-features">
-                            <ul>
-                                <li><i class="fas fa-check"></i> احیای رنگ‌های مات و فرسوده</li>
-                                <li><i class="fas fa-check"></i> ترمیم آثار نور خورشید و UV</li>
-                                <li><i class="fas fa-check"></i> حذف اکسیداسیون سطحی</li>
-                                <li><i class="fas fa-check"></i> محافظت در برابر عوامل محیطی</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="explanation-stats">
-                            <div class="stat-item">
-                                <span class="stat-number">۲-۳ روز</span>
-                                <span class="stat-label">مدت زمان</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">۲۴ ماه</span>
-                                <span class="stat-label">گارانتی</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">۹۵٪</span>
-                                <span class="stat-label">بازگشت شفافیت</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="explanation-card fade-in">
-                    <div class="explanation-icon">
-                        <i class="fas fa-gem"></i>
-                    </div>
-                    <div class="explanation-content">
-                        <h3><i class="fas fa-shield-alt"></i> کاور سرامیک (Ceramic Coating)</h3>
-                        <p>کاور سرامیک یک لایه نانویی محافظ است که روی رنگ خودرو اعمال می‌شود. این لایه به مدت ۳-۵ سال از خودرو در برابر خط و خش، مواد شیمیایی، UV و آلودگی محافظت می‌کند.</p>
-                        
-                        <div class="explanation-features">
-                            <ul>
-                                <li><i class="fas fa-check"></i> ماندگاری ۳ تا ۵ سال</li>
-                                <li><i class="fas fa-check"></i> مقاومت در برابر خط و خش سطحی</li>
-                                <li><i class="fas fa-check"></i> دافع آب و آلودگی (Hydrophobic)</li>
-                                <li><i class="fas fa-check"></i> محافظت ۱۰۰٪ در برابر UV</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="explanation-stats">
-                            <div class="stat-item">
-                                <span class="stat-number">۲ روز</span>
-                                <span class="stat-label">مدت زمان</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">۳۶ ماه</span>
-                                <span class="stat-label">گارانتی</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">۹۹٪</span>
-                                <span class="stat-label">دفع آب</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="explanation-card fade-in">
-                    <div class="explanation-icon">
-                        <i class="fas fa-film"></i>
-                    </div>
-                    <div class="explanation-content">
-                        <h3><i class="fas fa-shield-virus"></i> محافظ فیلم شفاف (PPF)</h3>
-                        <p>PPF یا Paint Protection Film یک لایه پلی‌اورتان شفاف است که مانند یک پوست دوم روی بدنه خودرو کشیده می‌شود. این فیلم در برابر سنگ ریزه، ضربات جاده‌ای و خط و خش مقاوم است.</p>
-                        
-                        <div class="explanation-features">
-                            <ul>
-                                <li><i class="fas fa-check"></i> محافظت فیزیکی کامل از جلوبندی</li>
-                                <li><i class="fas fa-check"></i> ترمیم خودکار خط و خش سطحی</li>
-                                <li><i class="fas fa-check"></i> ماندگاری ۷ تا ۱۰ سال</li>
-                                <li><i class="fas fa-check"></i> حفظ کامل شفافیت و زیبایی</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="explanation-stats">
-                            <div class="stat-item">
-                                <span class="stat-number">۱-۲ روز</span>
-                                <span class="stat-label">مدت زمان</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">۶۰ ماه</span>
-                                <span class="stat-label">گارانتی</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">۱۰۰٪</span>
-                                <span class="stat-label">محافظت</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- خدمات -->
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-title">
-                <h2>خدمات ما</h2>
-                <p>با استفاده از بهترین مواد اولیه و تکنولوژی روز دنیا</p>
-            </div>
-            
-            <div class="services-grid">
-                <div class="service-card fade-in">
-                    <div class="service-image">
-                        <img src="https://images.unsplash.com/photo-1579226905180-636b76d96082?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="لیسه‌گیری">
-                    </div>
-                    <div class="service-content">
-                        <h3>لیسه‌گیری کامل</h3>
-                        <p>حذف کامل خط و خش، سوئیـل و آثار خوردگی از روی بدنه خودرو با دستگاه‌های پولیش صنعتی</p>
-                        <div class="service-meta">
-                            <span><i class="far fa-clock"></i> ۱-۲ روز</span>
-                            <span><i class="fas fa-shield-alt"></i> گارانتی ۱۸ ماه</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="service-card fade-in">
-                    <div class="service-image">
-                        <img src="https://images.unsplash.com/photo-1563720223484-21c6c2d3c487?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="ریکاوری رنگ">
-                    </div>
-                    <div class="service-content">
-                        <h3>ریکاوری رنگ</h3>
-                        <p>احیای رنگ خودروهای قدیمی و بازگرداندن شفافیت و درخشندگی اولیه</p>
-                        <div class="service-meta">
-                            <span><i class="far fa-clock"></i> ۲-۳ روز</span>
-                            <span><i class="fas fa-shield-alt"></i> گارانتی ۲۴ ماه</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="service-card fade-in">
-                    <div class="service-image">
-                        <img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="کاور سرامیک">
-                    </div>
-                    <div class="service-content">
-                        <h3>کاور سرامیک</h3>
-                        <p>محافظت نانویی با ماندگاری بالا در برابر خط و خش و مواد شیمیایی</p>
-                        <div class="service-meta">
-                            <span><i class="far fa-clock"></i> ۲ روز</span>
-                            <span><i class="fas fa-shield-alt"></i> گارانتی ۳۶ ماه</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- فرآیند کار -->
-    <section class="process" id="process">
-        <div class="container">
-            <div class="section-title">
-                <h2>فرآیند کار در کار عالی</h2>
-                <p>از ابتدا تا انتهای کار با ما همراه باشید</p>
-            </div>
-            
-            <div class="process-steps">
-                <div class="process-step fade-in">
-                    <div class="step-number">۱</div>
-                    <div class="step-content">
-                        <h4>مشاوره و بازدید</h4>
-                        <p>بازدید رایگان از خودرو و ارائه مشاوره تخصصی توسط کارشناسان ما</p>
-                    </div>
-                </div>
-                
-                <div class="process-step fade-in">
-                    <div class="step-number">۲</div>
-                    <div class="step-content">
-                        <h4>تعیین پروژه</h4>
-                        <p>تعیین نوع خدمات مورد نیاز و ارائه طرح و برنامه کاری دقیق</p>
-                    </div>
-                </div>
-                
-                <div class="process-step fade-in">
-                    <div class="step-number">۳</div>
-                    <div class="step-content">
-                        <h4>اجرای خدمات</h4>
-                        <p>انجام خدمات تخصصی توسط تکنسین‌های مجرب با بهترین مواد</p>
-                    </div>
-                </div>
-                
-                <div class="process-step fade-in">
-                    <div class="step-number">۴</div>
-                    <div class="step-content">
-                        <h4>تحویل و گارانتی</h4>
-                        <p>تحویل خودرو با کیفیت عالی و ارائه گارانتی معتبر</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- آمار -->
-    <section class="stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item-large fade-in">
-                    <span class="stat-number-large" data-count="1250">0</span>
-                    <span class="stat-text-large">خودرو سرویس شده</span>
-                </div>
-                <div class="stat-item-large fade-in">
-                    <span class="stat-number-large" data-count="10">0</span>
-                    <span class="stat-text-large">سال تجربه</span>
-                </div>
-                <div class="stat-item-large fade-in">
-                    <span class="stat-number-large" data-count="98">0</span>
-                    <span class="stat-text-large">رضایت مشتری</span>
-                </div>
-                <div class="stat-item-large fade-in">
-                    <span class="stat-number-large" data-count="36">0</span>
-                    <span class="stat-text-large">ماه گارانتی</span>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- تماس -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>تماس با ما</h2>
-                <p>برای مشاوره رایگان و رزرو نوبت با ما در تماس باشید</p>
-            </div>
-            
-            <div class="contact-grid">
-                <div class="contact-info fade-in">
-                    <h3>اطلاعات تماس</h3>
-                    <ul class="contact-details">
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>تهران، خیابان ولیعصر، پلاک ۱۲۳۴</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-phone-alt"></i>
-                            <span>۰۲۱-۱۲۳۴۵۶۷۸</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-mobile-alt"></i>
-                            <span>۰۹۱۲-۱۲۳۴۵۶۷</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <span>info@caraali.ir</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-clock"></i>
-                            <span>شنبه تا پنجشنبه ۹:۰۰ تا ۲۱:۰۰</span>
-                        </li>
-                    </ul>
-                    
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-telegram"></i></a>
-                        <a href="#"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                
-                <div class="contact-form fade-in">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">نام و نام خانوادگی</label>
-                            <input type="text" id="name" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="phone">شماره تماس</label>
-                            <input type="tel" id="phone" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="carModel">مدل خودرو</label>
-                            <input type="text" id="carModel" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="service">خدمت مورد نظر</label>
-                            <select id="service" class="form-control" required>
-                                <option value="">انتخاب کنید</option>
-                                <option value="paint-correction">لیسه‌گیری</option>
-                                <option value="paint-restoration">ریکاوری رنگ</option>
-                                <option value="ceramic-coating">کاور سرامیک</option>
-                                <option value="ppf">محافظ فیلم شفاف (PPF)</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">پیام شما (اختیاری)</label>
-                            <textarea id="message" class="form-control" placeholder="توضیحات اضافی..."></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">
-                            <i class="fas fa-paper-plane"></i>
-                            ارسال درخواست
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- فوتر -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>کار عالی</h3>
-                    <p>ارائه دهنده تخصصی‌ترین خدمات مراقبت از خودرو با بیش از ۱۰ سال سابقه درخشان و کادری مجرب و متخصص.</p>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>لینک‌های سریع</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">خانه</a></li>
-                        <li><a href="#explanation">توضیحات خدمات</a></li>
-                        <li><a href="#services">خدمات</a></li>
-                        <li><a href="#process">فرآیند کار</a></li>
-                        <li><a href="#contact">تماس با ما</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>خدمات</h3>
-                    <ul class="footer-links">
-                        <li><a href="#explanation">لیسه‌گیری حرفه‌ای</a></li>
-                        <li><a href="#explanation">ریکاوری رنگ</a></li>
-                        <li><a href="#explanation">کاور سرامیک</a></li>
-                        <li><a href="#explanation">محافظ فیلم شفاف</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>© ۱۴۰۳ کلیه حقوق برای مجموعه کار عالی (Caraali) محفوظ است.</p>
-            </div>
-        </div>
-    </footer>
-    
-    <script>
-        // منوی موبایل
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            mobileMenuBtn.innerHTML = mobileMenu.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
+    <p style="margin-top: 20px; font-size: 0.7rem; opacity: 0.6;">· مینیمال و دلنشین ·</p>
+</footer>
+
+<!-- المان تزئینی پینترستی (دکمه ثابت) -->
+
+
+<script>
+    // اسکرول نرم
+    function scrollToSection(id) {
+        const element = document.getElementById(id);
+        const headerOffset = 120;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+    }
+
+    // تغییر کلاس هدر
+    window.onscroll = function() {
+        const header = document.getElementById("main-header");
+        if (window.scrollY > 50) header.classList.add("scrolled");
+        else header.classList.remove("scrolled");
+    };
+
+    // کلاس active به لینک نویگیشن
+    document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', function() {
+            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+            this.classList.add('active');
         });
-        
-        // اسکرول نرم
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
-                    
-                    // بستن منوی موبایل
-                    mobileMenu.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                    
-                    // آپدیت لینک فعال
-                    document.querySelectorAll('nav a').forEach(link => {
-                        link.classList.remove('active');
-                    });
-                    this.classList.add('active');
-                }
-            });
-        });
-        
-        // دکمه بازگشت به بالا
-        const backToTop = document.getElementById('backToTop');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTop.classList.add('active');
-            } else {
-                backToTop.classList.remove('active');
-            }
-        });
-        
-        backToTop.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // شمارنده آمار
-        const counters = document.querySelectorAll('.stat-number-large');
-        const speed = 200;
-        
-        const startCounter = () => {
-            counters.forEach(counter => {
-                const updateCount = () => {
-                    const target = +counter.getAttribute('data-count');
-                    const count = +counter.innerText;
-                    const increment = target / speed;
-                    
-                    if (count < target) {
-                        counter.innerText = Math.ceil(count + increment);
-                        setTimeout(updateCount, 20);
-                    } else {
-                        counter.innerText = target;
-                    }
-                };
-                updateCount();
-            });
-        };
-        
-        // فعال کردن شمارنده وقتی بخش آمار دیده شد
-        const statsSection = document.querySelector('.stats');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    startCounter();
-                    observer.unobserve(statsSection);
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        if (statsSection) observer.observe(statsSection);
-        
-        // فرم تماس
-        const contactForm = document.getElementById('contactForm');
-        
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // گرفتن مقادیر فرم
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const carModel = document.getElementById('carModel').value;
-            const service = document.getElementById('service').value;
-            
-            // در واقعیت اینجا داده‌ها به سرور ارسال می‌شود
-            // برای دمو فقط یک پیام نشان می‌دهیم
-            alert(`درخواست شما با موفقیت ثبت شد!\n\nنام: ${name}\nشماره تماس: ${phone}\nمدل خودرو: ${carModel}\nخدمت مورد نظر: ${service}\n\nکارشناسان ما در اسرع وقت با شما تماس خواهند گرفت.`);
-            
-            // ریست کردن فرم
-            contactForm.reset();
-        });
-        
-        // انیمیشن اسکرول
-        const fadeElements = document.querySelectorAll('.fade-in');
-        
-        const fadeInOnScroll = () => {
-            fadeElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
-                }
-            });
-        };
-        
-        // تنظیم اولیه برای عناصر fade-in
-        fadeElements.forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-        });
-        
-        window.addEventListener('scroll', fadeInOnScroll);
-        fadeInOnScroll(); // اجرای اولیه
-        
-        // فعال کردن لینک‌های منو بر اساس اسکرول
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('nav a');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 150)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').substring(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-        
-        // هور افکت روی کارت‌های توضیحات
-        document.querySelectorAll('.explanation-card').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-15px)';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0)';
-            });
-        });
-        
-        // تغییر عکس هیرو بر اساس زمان
-        const heroImages = [
-            'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80',
-            'https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80',
-            'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80'
-        ];
-        
-        let currentImageIndex = 0;
-        const heroSection = document.querySelector('.hero');
-        
-        function changeHeroImage() {
-            currentImageIndex = (currentImageIndex + 1) % heroImages.length;
-            heroSection.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9)), url('${heroImages[currentImageIndex]}')`;
-        }
-        
-        // تغییر خودکار عکس هر ۱۰ ثانیه
-        setInterval(changeHeroImage, 10000);
-    </script>
+    });
+</script>
+
 </body>
 </html>
-
